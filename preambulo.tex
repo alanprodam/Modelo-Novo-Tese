@@ -1,0 +1,199 @@
+%ARQUIVO DE PREAMBULO DA TESE - PACOTES E CONFIGURA\c{C}\~{O}ES
+
+\documentclass[
+	% -- op\c{c}\~{o}es da classe memoir --
+	12pt,				% tamanho da fonte
+	%openright,			% cap\'{\i}tulos come\c{c}am em p\'{a}g \'{\i}mpar (insere p\'{a}gina vazia caso preciso)
+	oneside,			% para impress\~{a}o em verso e anverso. Oposto a oneside
+	a4paper,		% tamanho do papel.
+	% -- op\c{c}\~{o}es da classe abntex2 --
+	chapter=TITLE,		% t\'{\i}tulos de cap\'{\i}tulos convertidos em letras mai\'{u}sculas
+	%section=TITLE,		% t\'{\i}tulos de se\c{c}\~{o}es convertidos em letras mai\'{u}sculas
+	%subsection=TITLE,	% t\'{\i}tulos de subse\c{c}\~{o}es convertidos em letras mai\'{u}sculas
+	%subsubsection=TITLE,% t\'{\i}tulos de subsubse\c{c}\~{o}es convertidos em letras mai\'{u}sculas
+	% -- op\c{c}\~{o}es do pacote babel --
+%	english,			% idioma adicional para hifeniza\c{c}\~{a}o
+	%french,			% idioma adicional para hifeniza\c{c}\~{a}o
+	%spanish,			% idioma adicional para hifeniza\c{c}\~{a}o
+	brazil,				% o \'{u}ltimo idioma \'{e} o principal do documento
+	english,
+	sumario=tradicional,
+	]{abntex2}
+
+
+% ---
+% PACOTES
+% ---
+
+% ---
+% Pacotes fundamentais
+% ---
+
+\usepackage{chngcntr}
+\counterwithin{figure}{chapter}
+\counterwithin{table}{chapter}
+\usepackage{cmap}				% Mapear caracteres especiais no PDF
+\usepackage{lmodern}			% Usa a fonte Latin Modern			
+\usepackage[T1]{fontenc}		% Selecao de codigos de fonte.
+\usepackage[utf8]{inputenc}		% Codificacao do documento (convers\~{a}o autom\'{a}tica dos acentos)
+\usepackage{mathptmx}			% Times New Roman font
+\usepackage{lastpage}			% Usado pela Ficha catalogr\'{a}fica
+\usepackage{indentfirst}		% Indenta o primeiro par\'{a}grafo de cada se\c{c}\~{a}o.
+\usepackage{color}				% Controle das cores
+\usepackage[pdftex]{graphicx}	% Inclus\~{a}o de gr\'{a}ficos
+\usepackage{epstopdf}           % Pacote que converte as figuras em eps para pdf
+\usepackage{lipsum}             % Pacote que gera texto dummy
+\usepackage{blindtext}          % Pacote que gera texto dummy
+% ---
+		
+% ---
+% Pacotes adicionais, usados apenas no \^{a}mbito do Modelo Can\^{o}nico do abnteX2
+% ---
+\usepackage{nomencl}
+\usepackage{amsmath,amssymb,amsfonts,amsthm}
+\usepackage{bbm}
+\usepackage[chapter]{algorithm}
+\usepackage{multirow}
+\usepackage{rotating}
+\usepackage{pdfpages}
+\usepackage{gensymb}
+% ---
+
+\usepackage{algorithm}
+
+
+
+% ---
+% Pacotes de cita\c{c}\~{o}es
+% ---
+\usepackage[alf,abnt-etal-cite=2,abnt-etal-list=3,abnt-etal-text=emph,abnt-emphasize=bf]{abntex2cite}
+\newcommand{\citet}{\citeonline}
+%Cita\c{c}\~{o}es padr\~{a}o ABNT
+%\citeoption{abnt-full-initials=no,abnt-url-package=url}
+% ---
+% Pacote de customiza\c{c}\~{a}o - Unicamp
+% ---
+\usepackage{unicamp}
+
+% Pacotes necesitados por Aldo Díaz
+\usepackage{enumitem}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{mathtools}
+\usepackage{tikz}
+\usepackage[noend]{algpseudocode}
+\usepackage{xr}
+
+% ---
+% CONFIGURA\c{C}\~{O}ES DE PACOTES
+% ---
+
+\renewcommand{\ABNTEXchapterfont}{\fontfamily{ptm}\fontseries{b}\selectfont}
+\renewcommand{\ABNTEXchapterfontsize}{\large}
+\renewcommand{\ABNTEXsectionfont}{\fontfamily{ptm}\fontseries{b}\selectfont}
+\renewcommand{\ABNTEXsectionfontsize}{\normalsize}
+\renewcommand{\ABNTEXsubsectionfont}{\fontfamily{ptm}\selectfont}
+\renewcommand{\ABNTEXsubsectionfontsize}{\normalsize}
+
+%\makeatletter
+%\newcommand\thefontsize[1]{{#1 The current font size is: \f@size pt\par}}
+%\makeatother
+
+
+\externaldocument[1-]{cap1_intro}
+\externaldocument[2-]{cap2_teoria}
+\externaldocument[3-]{cap3_metodo}
+\externaldocument[5-]{cap6_validation}
+\externaldocument[6-]{cap4_results}
+\externaldocument[7-]{cap5_conclu}
+
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+\newcommand{\Conv}{\mathop{\scalebox{1.5}{\raisebox{-0.2ex}{$\ast$}}}}
+\usetikzlibrary{shapes.geometric, arrows}
+%\floatname{algorithm}{Algoritmo}
+
+\tikzstyle{startstop} = [rectangle, rounded corners, minimum width=3cm, minimum height=1cm,text centered, draw=black, fill=gray!20]
+\tikzstyle{io} = [trapezium, trapezium left angle=70, trapezium right angle=110, minimum width=3cm, minimum height=1cm, text centered, text width=5cm, draw=black]
+\tikzstyle{process} = [rectangle, minimum width=3cm, minimum height=1cm, text centered, text width=3cm, draw=black]
+\tikzstyle{decision} = [diamond, minimum width=3cm, minimum height=1cm, text centered, draw=black]
+\tikzstyle{arrow} = [thick,->,>=stealth]
+
+% ---
+\ifpdf % used graphic file format for pdflatex
+  \graphicspath{{./eps/}}
+  \DeclareGraphicsExtensions{.png,.jpg,.pdf}
+\else  % used graphic file format for latex
+  \DeclareGraphicsExtensions{.eps}
+\fi
+
+%customiza\c{c}\~{a}o do negrito em ambientes matem\'{a}ticos
+\newcommand{\mb}[1]{\mathbf{#1}}
+%customiza\c{c}\~{a}o de teoremas
+\newtheorem{mydef}{Defini\c{c}\~{a}o}[chapter]
+\newtheorem{lemm}{Lema}[chapter]
+\newtheorem{theorem}{Teorema}[chapter]
+
+
+% ---
+% Configura\c{c}\~{o}es de apar\^{e}ncia do PDF final
+
+% alterando o aspecto da cor azul
+\definecolor{blue}{RGB}{41,5,195}
+
+% informa\c{c}\~{o}es do PDF
+\makeatletter
+\hypersetup{
+     	%pagebackref=true,
+		pdftitle={\@title},
+		pdfauthor={\@author},
+    	pdfsubject={\imprimirpreambulo},
+	    pdfcreator={LaTeX with abnTeX2},
+		pdfkeywords={abnt}{latex}{abntex}{abntex2}{trabalho acad\^{e}mico},
+		hidelinks,					% desabilita as bordas dos links
+		colorlinks=false,       	% false: boxed links; true: colored links
+    	linkcolor=blue,          	% color of internal links
+    	citecolor=blue,        		% color of links to bibliography
+    	filecolor=magenta,      	% color of file links
+		urlcolor=blue,
+%		linkbordercolor={1 1 1},	% set to white
+		bookmarksdepth=4
+}
+\makeatother
+% ---
+
+% ---
+% Espa\c{c}amentos entre linhas e par\'{a}grafos
+% ---
+
+% O tamanho do par\'{a}grafo \'{e} dado por:
+\setlength{\parindent}{2.0cm}
+
+% Controle do espa\c{c}amento entre um par\'{a}grafo e outro:
+\setlength{\parskip}{0.2cm}  % tente tamb\'{e}m \onelineskip
+
+% ---
+% Informacoes de dados para CAPA e FOLHA DE ROSTO
+% ---
+\titulo{Sistema de Decolagem e Pouso de Precisão com Quadrotor Autônomo Usando Detecção de Tags Aruco e Redes Neurais Convolucionais}
+\autor{Alan Ferreira Pinheiro Tavares}
+\local{Campinas}
+\data{2018}
+\orientador{Prof. Dr. Paulo Roberto Gardel Kurka}
+%\coorientador[Co-orientador]{Prof. Dr. Co-orientador}
+\instituicao{%
+    UNIVERSIDADE ESTADUAL DE CAMPINAS
+    \par
+    Faculdade de Engenharia Mecânica	
+    }
+%\tipotrabalho{Tese (Doutorado)}
+%% O preambulo deve conter o tipo do trabalho, o objetivo, o nome da institui\c{c}\~{a}o e a \'{a}rea de concentra\c{c}\~{a}o
+%\preambulo{Tese apresentada \`{a} Faculdade de Engenharia El\'{e}trica e de Computa\c{c}\~{a}o da Universidade Estadual de Campinas como parte dos requisitos exigidos para a obten\c{c}\~{a}o do t\'{\i}tulo de Doutor em Engenharia El\'{e}trica, na \'{A}rea de Engenharia de Computa\c{c}\~{a}o.}
+\tipotrabalho{Disserta\c{c}\~{a}o (Mestrado)}
+\preambulo{Dissertation presented to the School of Mechanical Engineering of the University of Campinas in partial fulfillment of the requirements for the Master's degree, in the field of Solid Mechanics and Mechanical Design.\\ \hfill \\Disserta\c{c}\~{a}o apresentada \`{a} Faculdade de Engenharia Mec{\^a}nica da Universidade Estadual de Campinas como parte dos requisitos exigidos para a obten\c{c}\~{a}o do t\'{\i}tulo de Mestre em Engenharia Mec{\^a}nica, na \'{A}rea de Mecânica dos Sólidos e Projeto Mecânico.}
+
+% --- 

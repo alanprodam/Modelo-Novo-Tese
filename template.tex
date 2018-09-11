@@ -1,0 +1,187 @@
+%%%%%%%%%%%%%%%%%%%%%%% file template.tex %%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% This is a general template file for the LaTeX package SVJour3
+% for Springer journals.          Springer Heidelberg 2010/09/16
+%
+% Copy it to a new file with a new name and use it as the basis
+% for your article. Delete % signs as needed.
+%
+% This template includes a few options for different layouts and
+% content for various journals. Please consult a previous issue of
+% your journal as needed.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% First comes an example EPS file -- just ignore it and
+% proceed on the \documentclass line
+% your LaTeX will extract the file if required
+\begin{filecontents*}{example.eps}
+%!PS-Adobe-3.0 EPSF-3.0
+%%BoundingBox: 19 19 221 221
+%%CreationDate: Mon Sep 29 1997
+%%Creator: programmed by hand (JK)
+%%EndComments
+gsave
+newpath
+  20 20 moveto
+  20 220 lineto
+  220 220 lineto
+  220 20 lineto
+closepath
+2 setlinewidth
+gsave
+  .4 setgray fill
+grestore
+stroke
+grestore
+\end{filecontents*}
+%
+\RequirePackage{fix-cm}
+%
+%\documentclass{svjour3}                     % onecolumn (standard format)
+%\documentclass[smallcondensed]{svjour3}     % onecolumn (ditto)
+\documentclass[smallextended]{svjour3}       % onecolumn (second format)
+%\documentclass[twocolumn]{svjour3}          % twocolumn
+%
+\smartqed  % flush right qed marks, e.g. at end of proof
+%
+\usepackage{graphicx}
+%
+% \usepackage{mathptmx}      % use Times fonts if available on your TeX system
+%
+% insert here the call for the packages your document requires
+%\usepackage{latexsym}
+% etc.
+%
+% please place your own definitions here and don't use \def but
+% \newcommand{}{}
+%
+% Insert the name of "your journal" with
+% \journalname{myjournal}
+%
+\begin{document}
+
+\title{Virtual Texturing of Lightweight Crankshafts
+	Bearings%\thanks{Grants or other notes
+%about the article that should go on the front page should be
+%placed here. General acknowledgments should be placed at the end of the article.}
+}
+%\subtitle{Do you have a subtitle?\\ If so, write it here}
+
+%\titlerunning{Short form of title}        % if too long for running head
+
+\author{Jonatha Oliveira de Matos Reis         \and
+        Marco Lucio Bittencourt %etc.
+}
+
+%\authorrunning{Short form of author list} % if too long for running head
+
+\institute{F. Author \at
+              first address \\
+              Tel.: +123-45-678910\\
+              \email{jonatharei@fem.unicamp.br}           %  \\
+%             \emph{Present address:} of F. Author  %  if needed
+           \and
+           S. Author \at
+              second address
+}
+
+\date{Received: date / Accepted: date}
+% The correct dates will be entered by the editor
+
+
+\maketitle
+
+\begin{abstract}
+In 2009, over 56 million liters of fuel were used to overcome friction in combustion engines, being the bearings alone accountable for nearly a quarter of this loss. This research aims to numerically model a lightweight crankshaft bearing and to study the effects that surface textures can have on its performance, aiming to reduce friction in this component.  A literature review was performed, covering the surface texture treatments, lubrication regimes and aspects of rough contact and temperature. A computer program was developed to study the behavior of a dynamically loaded bearing, considering roughness effects on lubrication, asperity contact, global thermal effects and surface texturing. Simulations were performed for the bearing of a lightweight crankshaft, considering different texture designs on its surface. The results showed that it is possible to reduce the mean and maximum hydrodynamic friction coefficient of these bearings, but some texture designs may lead to an increase in the fluid pressure, specially when the thermal effects are take into account.
+\keywords{Surface Texture \and Reynolds Equation \and Mixed Lubrication \and Crankshaft Journal Bearings \and Roughness Effects}
+% \PACS{PACS code1 \and PACS code2 \and more}
+% \subclass{MSC code1 \and MSC code2 \and more}
+\end{abstract}
+
+\section{Introduction}
+\label{intro}
+This work aims to develop procedures for virtual texturing of crankshaft bearings to improve their performance in terms of friction and load carrying capacity. There is an ever-increasing demand for automobiles worldwide and enhancing the tribological properties of engine components is important since nearly one third of the fuel energy is used to overcome friction \cite{Holmberg2012}. According to the author, only in 2009, 208,000 millions of liters of fuel were used to overcome friction, and, as gasoline is a nonrenewable power source and, therefore, has a limited life cycle, the amount of money wasted due to friction is only increasing. If would be possible to reduce the amount of friction in crankshaft bearings, it is possible to reduce the amount of gasoline required to provide the same power to the engine and, as a result,  increase the vehicle efficiency, allowing it to run with lower costs.
+
+In a regular four-stroke engine, gasoline works in an intake-compression-combustion-exhaust cycle, performed using mechanical components. About 28$\%$ of the energy fuel, without considering braking friction, is lost due to friction. Lubrication is important to reduce friction on these mechanical parts, but for a bearing, even when lubricated, the friction still represents about 25$\%$ of the power loss in engines \cite{Ligier2015}.      
+
+Researches were performed in mechanical seals and concluded that it is possible to reduce friction in seals by modifying their surfaces. In this study, performed by Etsion and Burstein, they added dimples to the seal surface and improved the component's performance, for an optimum set up. With those modifications, there was a friction reduction up to 50\% \cite{Etsion1996}. This research led to questions about whether it is possible to reproduce this results for different engine components. If so, the amount of energy lost due to friction in engine components would fall drastically, improving the vehicles' power efficiency.
+
+\section{Section title}
+\label{sec:1}
+Text with citations \cite{RefB} and \cite{RefJ}.
+\subsection{Subsection title}
+\label{sec:2}
+as required. Don't forget to give each section
+and subsection a unique label (see Sect.~\ref{sec:1}).
+\paragraph{Paragraph headings} Use paragraph headings as needed.
+\begin{equation}
+a^2+b^2=c^2
+\end{equation}
+
+% For one-column wide figures use
+\begin{figure}
+% Use the relevant command to insert your figure file.
+% For example, with the graphicx package use
+  \includegraphics[width=0.75\textwidth]{3_Sol1.png}
+% figure caption is below the figure
+\caption{Please write your figure caption here}
+\label{fig:1}       % Give a unique label
+\end{figure}
+%
+% For two-column wide figures use
+\begin{figure*}
+% Use the relevant command to insert your figure file.
+% For example, with the graphicx package use
+  \includegraphics[width=0.75\textwidth]{3_Sol1.png}
+% figure caption is below the figure
+\caption{Please write your figure caption here}
+\label{fig:2}       % Give a unique label
+\end{figure*}
+%
+% For tables use
+\begin{table}
+% table caption is above the table
+\caption{Please write your table caption here}
+\label{tab:1}       % Give a unique label
+% For LaTeX tables use
+\begin{tabular}{lll}
+\hline\noalign{\smallskip}
+first & second & third  \\
+\noalign{\smallskip}\hline\noalign{\smallskip}
+number & number & number \\
+number & number & number \\
+\noalign{\smallskip}\hline
+\end{tabular}
+\end{table}
+
+
+%\begin{acknowledgements}
+%If you'd like to thank anyone, place your comments here
+%and remove the percent signs.
+%\end{acknowledgements}
+
+% BibTeX users please use one of
+%\bibliographystyle{spbasic}      % basic style, author-year citations
+%\bibliographystyle{spmpsci}      % mathematics and physical sciences
+%\bibliographystyle{spphys}       % APS-like style for physics
+%\bibliography{}   % name your BibTeX data base
+
+% Non-BibTeX users please use
+\begin{thebibliography}{}
+%
+% and use \bibitem to create references. Consult the Instructions
+% for authors for reference list style.
+%
+\bibitem{RefJ}
+% Format for Journal Reference
+Author, Article title, Journal, Volume, page numbers (year)
+% Format for books
+\bibitem{RefB}
+Author, Book title, page numbers. Publisher, place (year)
+% etc
+\end{thebibliography}
+
+\end{document}
+% end of file template.tex
+

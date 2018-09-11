@@ -1,0 +1,397 @@
+%% abtex2-modelo-trabalho-academico.tex, v-1.7.1 laurocesar
+%% Copyright 2012-2013 by abnTeX2 group at http://abntex2.googlecode.com/
+%%
+%% This work may be distributed and/or modified under the
+%% conditions of the LaTeX Project Public License, either version 1.3
+%% of this license or (at your option) any later version.
+%% The latest version of this license is in
+%%   http://www.latex-project.org/lppl.txt
+%% and version 1.3 or later is part of all distributions of LaTeX
+%% version 2005/12/01 or later.
+%%
+%% This work has the LPPL maintenance status `maintained'.
+%%
+%% The Current Maintainer of this work is the abnTeX2 team, led
+%% by Lauro C\'{e}sar Araujo. Further information are available on
+%% http://abntex2.googlecode.com/
+%%
+%% This work consists of the files abntex2-modelo-trabalho-academico.tex,
+%% abntex2-modelo-include-comandos and abntex2-modelo-references.bib
+%%
+
+% ------------------------------------------------------------------------
+% ------------------------------------------------------------------------
+% abnTeX2: Modelo de Trabalho Academico (tese de doutorado, dissertacao de
+% mestrado e trabalhos monograficos em geral) em conformidade com
+% ABNT NBR 14724:2011: Informacao e documentacao - Trabalhos academicos -
+% Apresentacao
+% ------------------------------------------------------------------------
+% ------------------------------------------------------------------------
+
+\input{preambulo}
+
+% ---- compila o \'{\i}ndice  ----
+\makeindex
+%\makenomenclature
+% ---
+%\usepackage{titlesec, blindtext, color}
+%\newcommand{\hsp}{\hspace{20pt}}
+%\titleformat{\chapter}[hang]{\Huge\bfseries\uppercase}{\thechapter{. }}{0pt}{\Huge\bfseries}
+% ---- In\'{\i}cio do documento ----
+\begin{document}
+
+% Retira espa\c{c}o extra obsoleto entre as frases.
+\frenchspacing
+
+\makepagestyle{abntheadings}
+\makeevenhead{abntheadings}{\ABNTEXfontereduzida\thepage}{}{\ABNTEXfontereduzida\textit\leftmark}
+\makeoddhead{abntheadings}{}{}{\ABNTEXfontereduzida\thepage}
+
+% ---- ELEMENTOS PR\'{E}-TEXTUAIS ----
+\pretextual
+
+%\pagenumbering{roman}
+
+% --- Capa ---
+\imprimircapa
+% ---
+
+% --- Folha de rosto (o * indica que haver\'{a} a ficha catalogr\'{a}fica) ---
+\setcounter{page}{2}
+
+\imprimirfolhaderosto*
+% ---
+
+% --- Inserir a ficha catalogr\'{a}fica ---
+ \begin{fichacatalografica}
+    \centering
+    %\includepdf{ficha-catalografica.pdf}
+ \end{fichacatalografica}
+
+\newpage
+\begin{center}\large\textbf{UNIVERSIDADE ESTADUAL DE CAMPINAS \\
+		FACULDADE DE ENGENHARIA MECÂNICA \\
+		COMISSÃO DE PÓS-GRADUAÇÃO EM ENGENHARIA MECÂNICA \\
+		DEPARTAMENTO DE SISTEMAS INTEGRADOS
+		}\end{center}	
+\vspace{0cm}	
+\begin{center}\textbf{TESE DE DOUTORADO ACADÊMICO}\end{center}
+\vspace*{0cm}
+\begin{center}
+	\Huge\textbf{\imprimirtitulo}
+\end{center}
+\begin{flushleft}
+Autor: \imprimirautor 
+\\
+Orientador: \imprimirorientador \\
+\hfil \\
+A Banca Examinadora composta pelos membros abaixo aprovou esta Dissertação:
+\\ \hfil \\
+\textbf{Prof. Dr. Paulo Roberto Kurka Gardel \\
+FEM/UNICAMP \\
+\hfil \\
+Prof. Dr. Gregory Bregion Daniel  \\
+FEM/UNICAMP \\
+\hfil \\
+Prof. Dr. Francisco José Profito  \\
+PME/EPUSP}
+
+\hfil \\
+A Ata da defesa com as respectivas assinaturas dos membros encontra-se no processo de vida acadêmica do aluno.
+\end{flushleft}
+\vspace{0.2cm} 
+\begin{flushright}
+	Campinas, 04 de dezembro de 2018.
+\end{flushright}
+\newpage
+
+% --- --- ---
+
+%\cleardoublepage
+
+% --- Dedicat\'{o}ria ---
+\begin{dedicatoria}
+    \vspace*{\fill}
+    \centering
+    \noindent
+    \textit{À minha família,\\
+    	    que mesmo longe, esteve sempre comigo. }
+    \vspace*{\fill}
+\end{dedicatoria}
+% ---
+
+% --- Agradecimentos ---
+\begin{otherlanguage*}{brazil}
+\begin{agradecimentos}
+Gostaria de agradecer, primeiramente, aos meus pais, Ana e Valter, que me apoiaram em todos os momentos e que conhecem os caminhos que me levaram até aqui. Foi a estrada que vocês trilharam que me trouxe tão longe e onde ela começa é o lugar que chamarei sempre de lar. Obrigado também à minha irmã Jocasta e à minha prima Thais, por fazerem parte dos ótimos momentos que uso de recordação e inspiração. 
+
+Agradeço imensamente ao professor Marco Lúcio Bittencourt, pela chance de fazer parte desse projeto. O aprendizado proporcionado por esse mestrado estará comigo sempre e se hoje dou mais um passo em direção à pesquisa, é porque ele me deu a oportunidade e me inspirou a continuar buscando o conhecimento sempre.
+
+Deixo aqui também um agradecimento especial ao professor Francisco José Profito. Sem a sua ajuda, eu não teria chegado tão longe nessa pesquisa. Muito obrigado pelas conversas e pelas dúvidas respondidas.  
+
+Muito obrigado a todos do lab, por tornarem a experiência do mestrado muito mais tranquila e divertida. Alfredo, obrigado pelo template em LATEX, mas também por dividir os problemas e alegrias do mestrado comigo. Guilherme, muito obrigado por toda a ajuda no início da minha pesquisa, em especial pelo suporte na utilização dos softwares comerciais de simulação. Darla e Mari, muito obrigado pelo convívio e pela dose de humor e loucura quase diária. Eduardo, obrigado pela ajuda a cada novo documento que precisava ser entregue e pela companhia nas reuniões de projeto. Agradeço imensamente a todos e espero o melhor para vocês.
+
+Agradeço eternamente aos meus conterrâneos e amigos, Alessandro, Breno e Lívia, que passaram pelas mesmas dificuldades e saudades que passei para virem até aqui e que estiveram comigo durante toda essa jornada. Vocês foram essenciais para tornar essa jornada mais fácil e saibam que, aonde quer que estejamos, poderão sempre contar comigo.     
+
+Meu muito obrigado àquela que esteve comigo durante todos os momentos. Cintia, meu amor, obrigado por fazer parte dessa história e dividir comigo os melhores momentos. Você foi e vai ser sempre minha referência do melhor que posso ser. Seu apoio foi vital para minha sanidade durante esse mestrado. Obrigado por estar comigo na alegria e na tristeza, na saúde e na doença, na pobreza e na menos pobreza, por todos os dias.
+
+Por fim, meus agradecimentos ao professor Waldyr Luiz Ribeiro Gallo, pela gerência do projeto temático, e à Fundação de Amparo à Pesquisa do Estado de São Paulo (FAPESP) pela concessão do auxílio à pesquisa e bolsa de mestrado, sob o processo número 2015/16470-1 .  
+
+
+\end{agradecimentos}
+\end{otherlanguage*}
+% ---
+
+% --- Ep\'{\i}grafe  ---
+%\begin{epigrafe}
+%    \vspace*{\fill}
+%    \begin{flushright}
+%        \textit{``To be born ignorant is nobody's fault, but to remain is everybody's responsibility.''\\
+%        (Abraham Laboriel, Músico profissional)}
+%    \end{flushright}
+%\end{epigrafe}
+% ---
+
+% --- RESUMOS (em portugu\^{e}s e ingl\^{e}s ---
+\begin{otherlanguage*}{english}
+	\begin{center}{\ABNTEXchapterfont\ABNTEXchapterfontsize RESUMO}\end{center}
+
+Em 2009, 56 milhões de litro de combustível foram gastos com o atrito em motores de combustão, sendo os mancais responsáveis por cerca de um quarto dessa perda. Essa pesquisa tem o objetivo de modelar numericamente os mancais de um virabrequim com alívio de peso, estudando os efeitos que a texturização superficial desses mancais pode ter no seu desempenho e focando em reduzir o atrito deste componente. Uma revisão bibliográfica foi realizada, tratando da texturização superficial, dos regimes de lubrificação e aspectos de rugosidade, contato de superfícies e temperatura. Um programa de computador foi desenvolvido para estudar o comportamento de um mancal carregado dinamicamente, levando em conta efeitos de rugosidade, contato de asperezas, efeitos térmicos e texturização superficial. Simulações foram realizados no mancal de um virabrequim com alívio de peso, aplicando diferentes designs de textura à sua superfície. Os resultados mostraram que é possível reduzir o coeficiente de atrito hidrodinâmico médio e máximo destes componentes, mas alguns designs de texturas tendem a aumentar a pressão no fluido lubrificante, especialmente se forem levados em conta os efeitos térmicos.  
+
+\noindent\textbf{Palavras-Chave}: Texturização Superficial; Equação de Reynolds; Regime de Lubrificação Mista; Mancal de Deslizamento; 
+
+\end{otherlanguage*}
+
+\newpage
+\begin{resumo}
+	\input{cap0_abstract}
+
+\vspace{\onelineskip}
+
+\noindent\textbf{Keywords}: Surface Texture; Reynolds Equation; Mixed Lubrication;Crankshaft Journal Bearings; Roughness Effects.
+%sound analysis; Harmonic Band Hurst Exponent; wind instruments; quena.
+
+\end{resumo}
+
+
+
+\newpage
+% ---
+
+\renewcommand{\listfigurename}{Lista de Figuras}
+\renewcommand{\listtablename}{Lista de Tabelas}
+\renewcommand{\contentsname}{Sumário}
+\renewcommand{\figurename}{Fig.}
+\renewcommand\bibname{Referências}
+\renewcommand\tablename{Table}
+
+% --- inserir lista de ilustra\c{c}\~{o}es ---
+\pdfbookmark[0]{\listfigurename}{lof}
+\listoffigures*
+\cleardoublepage
+%% ---
+%
+%% --- inserir lista de tabelas ---
+\pdfbookmark[0]{\listtablename}{lot}
+\listoftables*
+\cleardoublepage
+% ---
+
+
+%\begin{siglas}
+%	\item[Fig.] Area of the $i^{th}$ component
+%	\item[456] Isto é um número
+%	\item[123] Isto é outro número
+%	\item[lauro cesar] este é o meu nome
+%\end{siglas}
+
+
+% inserir lista de símbolos
+% ---
+\begin{simbolos}
+	\item[$ a, b, c $] Constants for the dynamic viscosity thermal models
+	\item[$ x, y, z $] Cartesian axis
+	\item[$ u_x, u_y, u_z $] Local velocity components
+	\item[$ r_x, r_y, r_z $] Elliptical dimple radius
+	\item[$ x_c, y_c, z_c $] Elliptical dimple origin center
+	\item[$ h $] Fluid film thickness
+	\item[$ h_o $] Radial clearance
+	\item[$ h' $] Mean surface separation
+	\item[$ h_T $] Film thickness between two rough surfaces
+	\item[$ t $] Time
+	\item[$ e $] Eccentricity
+	\item[$ k $] Successive over relaxation iteration step		
+	\item[$ q_x, q_z $] Lubricant film flow	
+	\item[$ n_x, n_z $] Number of dimples
+	\item[$ P $] Hydrodynamic pressure
+	\item[$ P_{cav} $] Cavitation pressure
+	\item[$ P_{amb} $] Ambient pressure	
+	\item[$ R $] Bearing radius
+	\item[$ R_j $] Journal radius
+	\item[$ U, W $] Rotational speeds on the x and y axes.
+	\item[$ T $] Temperature in Kelvin
+	\item[$ T_{\circ C} $] Temperature in Celsius
+	\item[$ C_p $] Lubricant specific heat
+	\item[$ Q $] Axial fluid film flux
+	\item[$ E $] Combined elastic modulus
+	\item[$ N $] Number of asperities
+	\item[$ N_x, Nz $] Number of integration points
+	\item[$ L_x $] Bearing thickness
+	\item[$ L_z $] Bearing length
+	\item[$ L_{tx}, L_{tz} $] Length of dimple cell	
+	\item[$ W_x, W_y $] Length of dimple cell	
+	\item[$ F_x, F_y $] Length of dimple cell			
+	\item[$ Z_s $] Mean asperity height of combined rough surfaces	
+	\item[$ \mu $] Dynamic viscosity
+	\item[$ \rho $] Lubricant density
+	\item[$ \rho_c $] Lubricant density on cavitation pressure
+	\item[$ \tau $] Shear stress
+	\item[$ \varepsilon $] Eccentricity ratio
+	\item[$ \beta $] Bulk modulus
+	\item[$ \beta_s $] Mean asperity radius of combined rough surfaces
+	\item[$ \sigma_r $] Standard deviation of combine roughness amplitude 
+	\item[$ \sigma_s $] Standard deviation of asperity heights 
+	\item[$ \delta_r $] Combined roughness amplitude
+	\item[$ \eta_s $] Asperity density
+	\item[$ \vartheta $] Dissipated power
+	\item[$ \zeta $] Friction torque
+	\item[$ \omega_p $] Over relaxation parameter for the pressure
+	\item[$ \omega_p $] Over relaxation parameter for the film fraction
+	\item[$ \xi_{p} $] Pressure tolerance
+	\item[$ \xi_{\theta} $] Film fraction tolerance
+	\item[$ \xi_{x} $] Tolerance for the support load on the $x$ axis
+	\item[$ \xi_{y} $] Tolerance for the support load on the $y$ axis
+	\item[$ \xi_{T} $] Temperature tolerance
+	\item[$ \Lambda$] Ratio between fluid film thickness and surface roughness	
+	\item[$ \phi_{p_{(x,z)}} $] Patir and Cheng pressure flow factors
+	\item[$ \phi_{s_{(x)}} $] Patir and Cheng shear flow factors
+	\item[$ \phi_{fp_{(x,z)}}$] Patir and Cheng friction pressure flow factors
+	\item[$ \phi_{fs_{x}}$] Patir and Cheng friction shear flow factors
+	\item[$ \phi_{f_{(x,z)}}$] Friction contact factor	
+			
+\end{simbolos}
+% ---
+
+% --- inserir lista de Algorítimos ---
+%\pdfbookmark[0]{\listalgorithmname}{las}
+%\listofalgorithms
+%\cleardoublepage
+% ---
+
+% --- inserir o sumario ---
+
+\pdfbookmark[0]{\contentsname}{toc}
+\addtocontents{toc}{\protect\setcounter{tocdepth}{1}}
+\tableofcontents*
+
+
+\cleardoublepage
+% ---
+
+% --- inserir lista de Acronimos e Abrevia\c{c}\~{o}es ---
+%\renewcommand{\nomname}{Lista de Acr\^{o}nimos e Abrevia\c{c}\~{o}es}
+%\pdfbookmark[0]{\nomname}{las}
+%\printnomenclature
+%\cleardoublepage
+% ---
+
+\pagenumbering{arabic}
+
+% ---- ELEMENTOS TEXTUAIS ----
+\textual
+\setcounter{page}{4}  %Colocar contador acordo com a numeracao do texto
+% ---- Introdu\c{c}\~{a}o ----
+
+%\part{Introdução}
+\include{cap1_intro}
+
+% ---- Cap\'{\i}tulos ----
+
+%\part{Fundamentos teóricos}
+
+\include{cap2_teoria}
+
+%\part{Metodologia}
+
+\include{cap3_metodo}
+
+%\part{Resultados}
+
+\include{cap4_validation}
+
+\include{cap5_results}
+
+\include{cap6_conclu}
+
+% --- Finaliza a parte no bookmark do PDF, para que se inicie o bookmark na raiz ---
+\bookmarksetup{startatroot}%
+% ---
+
+
+% ---- ELEMENTOS P\'{O}S-TEXTUAIS ----
+\postextual
+
+% ---- Refer\^{e}ncias bibliogr\'{a}ficas ----
+
+\bibliography{refes}
+
+% ---- Ap\^{e}ndices ----
+
+% ---
+% Inicia os ap\^{e}ndices
+% ---
+%\begin{apendicesenv}
+%
+%% Imprime uma p\'{a}gina indicando o in\'{\i}cio dos ap\^{e}ndices
+%\partapendices
+%
+%% ----------------------------------------------------------
+%\chapter{Quisque libero justo}
+%% ----------------------------------------------------------
+%
+%\lipsum[50]
+%
+%% ----------------------------------------------------------
+%\chapter{Nullam elementum urna vel imperdiet sodales elit ipsum pharetra ligula
+%ac pretium ante justo a nulla curabitur tristique arcu eu metus}
+%% ----------------------------------------------------------
+%\lipsum[55-57]
+%
+%\end{apendicesenv}
+% ---
+
+% ---- Anexos ----
+
+% ---
+% Inicia os anexos - opcional
+% ---
+%\begin{anexosenv}
+
+% Imprime uma p\'{a}gina indicando o in\'{\i}cio dos anexos
+%\partanexos
+
+% ---
+%\chapter{Morbi ultrices rutrum lorem.}
+% ---
+%\lipsum[30]
+
+% ---
+%\chapter{Cras non urna sed feugiat cum sociis natoque penatibus et magnis dis
+%parturient montes nascetur ridiculus mus}
+% ---
+
+%\lipsum[31]
+
+% ---
+%\chapter{Fusce facilisis lacinia dui}
+% ---
+
+%\lipsum[32]
+
+%\end{anexosenv}
+
+% ---- INDICE REMISSIVO ----
+
+\printindex
+
+\end{document} 

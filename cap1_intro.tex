@@ -1,0 +1,110 @@
+\chapter{Introdução}
+
+\section{Motivação}
+
+O uso de Veículos Autônomos Aéreos Não Tripulados (VAANTs), também conhecidos como \textit{drones} ou quadrotores autônomos, vêm ganhando notoriedade nas últimas décadas seguido de aplicações cada vez mais inovadoras em quase todos os setores, sejam elas com propósito militar, de pesquisa, comércio, vigilância ou de lazer. Isto se deu devido ao avanço tecnológico computacional aliado a características cada vez mais autônomas dos VAANTs, demandando assim técnicas mais robustas para garantir a segurança das aeronaves. Justifica-se também este interesse por conta do crescente número de fabricantes, redução de preços e melhoria da qualidade dos componentes e sensores envolvidos \cite{Santos2014}.
+
+Segundo definições de \citet{Duan2010}, VAANT é um tipo de sistema muito complexo que integra diferentes componentes de hardware, como o Sistema de Posicionamento Global (GPS), Unidade de Gerenciamento Inercial (IMU), controlador e diferentes componentes de software, como processamento de imagem e planejamento de trajetória. \citet{Costa2012} destaca a importância da IMU no sistema de localização dos VANNTs que integra bússola, barômetro, sonares e sensor GPS. Tanto o IMU quanto a bússola indicam a atitude; Barômetro e sonar podem ser usados para leitura de altitude, e o GPS para obter dados de posicionamento e também altitude. 
+
+\subsection{Problematização da Descolagem e Pouso}
+
+Contudo, estes sensores de navegação podem apresentar erros da ordem de metros e de forma acumulativa, principalmente quando se diz a respeito de pousos ou decolagens utilizando GPS próximos a prédios, redes elétricas ou montanhas que bloqueiam ou anulam completamente o sinal de GPS. Este fato deprecia a qualidade, confiabilidade e custo da missão, visto que se faz necessário a aquisição de sensores com altissíma precisão e com blinagem eletrostática especial, resultando em custo elevado. Logo, a visão computacional é uma excelente solução de baixo custo e alto retorno de informações espaciais para controle de VANTs.
+ 
+Tal solução é apresentada através das câmeras de sensor exteroceptivo ou monocular, que além de atribuir precisão em navegação possui a vantagem de ser um sensor passivo, de baixa sensibilidade a ruídos e independente do sinal de GPS, permitindo voo em ambientes onde esse sinal não possui boa qualidade \cite{GUO2014}. Pode-se citar algorítimos de código aberto como de \citet{Forster2014} e \citet{Raul2016}, que trazem robustas soluções de navegação por visual monocular através de uma abordagem semi-direta que elimina a necessidade de extração de recursos caros e técnicas de correspondência robustas para estimativa de posição e orientação.
+
+%===================================================================================================
+
+\subsection{Aplicação de Drones em Serviçoes de encomendas \textit{(delivery)}}
+
+Uma das aplicações dos estudos desta tecnologia está presente no setor de encomendas \textit{(delivery)}, onde são utilizados pelo serviço de entregas em algumas regiões como nos Estados Unidos, Austrália e Suíça. Um dos exemplos é o serviço \textit{Prime Air} da companhia \textit{Amazon}, que promete atender a encomendas de até 5 \textit{libras} em meia hora, com veículos cobertos de redundâncias "\textit{sense and avoid}" para garantir a segurança durante o tráfego em rotas especiais. Na Suíça estão sendo testados \textit{drones} para entregas de encomendas pesando até um quilograma por distâncias que se estendem a dez quilômetros, segundo notícias de Agosto de 2016 \cite{Vidal2016}.
+
+Segundo notícias de Maio de 2018. O Brasil já realizou a primeira simulação de \textit{delivery}, que ocorreu em São Paulo com autorização do Departamento de Controle do Espaço Aéreo (DECEA). Com o objetivo de entregar medicamentos, a ação utilizou um hexacóptero e um programa desenvolvidos pela marca nacional \textit{SMX Systems}. Apesar de ser considerada a primeira simulação oficial, esta não foi a primeira vez em que uma entrega é feita com \textit{drone} no país, já que em 2014 houve um \textit{delivery} de pizza no município de Santo André (SP) \cite{Techtudo2018}.
+
+
+\subsection{Problematização Linhas de Transmissão}
+
+\subsection{Sugestão da Solução}
+
+Com base nos argumentos descritos acima, verifica-se a motivação da tesa no âmbito de desenvolver e simular um sistema de pouso e decolagem de precisão para veículos quadrotores autônomos. A tese visa realizar o controle do sistema utilizando técnicas de visão computacional simuladas via V-REP usando um quadrotor com cãmera voltada para baixo. O algorítimo do sistema fará a detecção de marcadores de decolagem/pouso via \textit{tag} ArUco, contornando a necessidade de uso de GPS e IMUs que possuem erros de localização inerentes ao seu sensoriamento. A proposta basea-se em obter um algorítimo que utilize a Rede Neural Convolucional (CNN) de forma a complementar a detecção da \textit{tag} ArUco clássica da maneira mais eficaz.  Deseja-se criar dados de treinamento híbridos através de dados sintéticos e reais de forma a superar a limitações de casos específicos como detecção imprecisa a longa distância, oclusão parcial ou uso de câmeras com alta distorção. 
+
+Verifica-se a utilização de ArUco pelo fato de ser uma biblioteca de código aberto para detecção de marcadores fiduciais. Segundo \citet{Aruco2014}, a biblioteca permite estimar a pose de uma câmera a partir de um ou vários marcadores que são analisados em paralelo, onde, cria-se uma imagem canônica no nível da pirâmide que alcança o melhor equilíbrio entre qualidade e tamanho, sendo atualmente uma das estratégias mais investigas para uso como marcador de pouso e rastreamento com VAANTs, além de dispor de criação de marcadores personalizados. 
+
+%Contudo, tem-se ainda o desafio de identificação a longo alcance, visto que o marcador fiducial tem um limite de tamanho por distancia de identificação segura. Ou seja, para alturas elevadas acima de 30 metros se faz necessário o uso de uma segunda abordagem, um algoritmo de odometria visual monocular que mesmo sem a identificação do marcador, guie o \textit{drone} próximo a altura de identificação segura. 
+
+%===================================================================================================
+
+%Logo o trabalho traz a proposta de se utilizar a biblioteca ArUco  em conjunto com o algorítimo de \citet{Forster2014}, uma técnica já consolidada e precisa que segundo o autor a mais rápida dos métodos atuais de última geração. Tem-se como vantagem, a abordagem semi-direta que elimina a necessidade de extração de recursos caros e técnicas de correspondência robustas para estimativa de movimento. O algorítimo opera diretamente nas intensidades de pixel, o que resulta em precisão de subpixel em altas taxas de quadros. Chamado pelo autor como abordagem de \textit{Odometria Visual Semi-Direta} (SVO), já foi testado em veículos micro-aéreos e lançado como \textit{software} de código aberto.
+
+%Em relação ao desafio de custo elevado versos desempenho computacional, conta-se com a estratégia de embarcar o \textit{software} desenvolvido em um \textit{hardware} de dispositivo \textit{smartphones} via plataforma \textit{Android} com o objetivo obter desempenho computacional bom ou similar a computadores convencionais quando utilizados para o mesmo objetivo. As vantagens de se embarcar uma interface \textit{Android} é facilidade de comunicação e uso dos periféricos já embarcados no dispositivo, além dos ganhos em custo benefício entre processamento e consumo de energia.
+
+%Por fim, serão realizados testes experimentais que verifiquem o desempenho do sistema desenvolvido frente a 2 (duas) abordagens utilizadas para pouso de precisão: 1.PX4Flow via técnica Optical Flow; 2.IR-LOCK via câmera PIXY. Estima-se o uso do sistema em uma aplicação real em missões de entregas (\textit{deliveries}) de medicamento na cidade do Porto-Portugal vinculada a empresa \textit{Connec Robotics}. As mesmas técnicas utilizadas para o pouso bodem ser replicadas para a decolagem que também apresenta grandes problemáticas quando guiada somente por GPS. 
+
+\subsection{Objetivo}
+
+O presente trabalho tem como objetivo principal desenvolver e simular um sistema de pouso e decolagem de precisão para veículos quadrotores autônomos. A tese visa realizar o controle do sistema utilizando técnicas de visão computacional simuladas via V-REP usando um quadrotor com cãmera voltada para baixo. O algorítimo do sistema fará a detecção de marcadores de decolagem/pouso via \textit{tag} ArUco, contornando a necessidade de uso de GPS e IMUs que possuem erros de localização inerentes ao seu sensoriamento. A proposta basea-se em obter um algorítimo que utilize a Rede Neural Convolucional (CNN) de forma a complementar a detecção da \textit{tag} ArUco clássica da maneira mais eficaz. Deseja-se criar dados de treinamento híbridos através de dados sintéticos e reais de forma a superar a limitações de casos específicos como detecção imprecisa a longa distância, oclusão parcial ou uso de câmeras com alta distorção. A metodologia adotada demanda as seguintes etapas:
+
+\begin{itemize}
+  \item Realizar levantamento bibliográfico sobre os principais conceitos e desafios de pesquisa referentes a pouso e decolagem de precisão autônoma utilizando veículos quadrotores;
+  
+  \item Embarcar bibliotecas de OpenCV, ArUco e \textit{Tensorflow}  vinculados a linguagem de programação C/C++ ou \textit{Python} em uma única IDE;
+  
+  \item Estruturar um dicionário de marcadores fiduciais que apresente bons desempenhos nos quesitos de identificação precisa do marcador e confiabilidade de posição;
+  
+  \item Desenvolver inicialmente um algorítimo que tenha como saída a posição do marcador de pouso em relação ao quadrotor, baseada somente na técnica de detecção via \textit{tag} ArUco;
+  
+  \item Utilizar o Simulador V-REP para integrar a comunicação de controle do quadrotor com o algorítimo desenvolvido;
+  
+   \item Realizar a aquisição de dados sintéticos de treinamento de rede neural através de ensaios simulados de decolagem e pouso com quadrotores via V-REP;
+  
+  \item Realizar a aquisição de dados reais de treinamento de rede neural através de ensaios reais de decolagem e pouso com quadrotores via gravações de \textit{datasets};
+   
+   \item  Realizar treinamento dos dados obtidos para identificar o marcador desejado utilizando técnica de Rede Neural Convolucional (CNN);
+   
+   \item Implementar e simular no V-REP o algorítimo desenvolvido (CNN) de forma a complementar a detecção da \textit{tag} ArUco clássica da maneira mais eficaz.
+   
+   \item Coletar dados estatísticos dos ensaios simulados via V-REP e analisar o desempenho do sistema autônomo projetado;
+   
+    \item Determinar os melhores parâmetros visando eficiência na identificação de marcadores a longa distância, onclusões parciais e distorção de câmera;
+    
+\end{itemize}
+
+%===================================================================================================
+
+\section{Estado da Arte}
+
+%\subsection{Visão Geral: Veículos Autônomos Aéreos Não Tripulados VAANTS}
+
+	%\subsubsection{Conceitos e Fundamentos}
+
+	%\subsubsection{Desafios de Controle e Navegação em Pouso/Decolagem}
+
+	%\subsubsection{Aplicações Comerciais}
+
+\subsection{Trabalhos Relacionado: Descolagem e Pouso Autônomo}
+
+	\subsubsection{Revisão Literária das Principais Técnicas}
+
+	\subsubsection{Revisão Literária do Uso de Marcadores Fiduciais como \textit{Landmarks}}
+
+	\subsubsection{Revisão Literária das Técnicas de Redes Neurais Usadas para Aperfeiçoar a Detecção de \textit{Tags} ArUco}
+    
+    
+    ------
+    
+%===================================================================================================
+
+\subsection{Contribuição Científica: Algorítimo de Decolagem e Pouso Autônomo}
+
+	\subsubsection{Dicionário de Marcadores para Pouso/Decolagem de Identificação Única}
+
+	\subsubsection{Utilização da (CNN) para Complementar a detecção da \textit{tag} ArUco de forma Eficaz}
+
+	\subsubsection{Desenvolvimento de um Sistema de Baixo Custo para Decolagem e Pouso Autônomo de Quadrotores sem uso de GPS ou IMU}
+
+\section{Estruturação da Tese}
+
+Os capítulos seguintes descrevem o trabalho da seguinte forma: O capítulo 2 (dois) traz o estado da arte, descrevendo uma visão geral sobre os VAANTs, os trabalhos relacionas e por fim a contribuição cientifica da pesquisa; O capítulo 3 (três) aborda sobre o sistema de pouso e decolagem desenvolvido, bem como as técnicas matemáticas para localização da aeronave no ambiente, descreve as linguagens e bibliotecas de programação empregadas no desenvolvimento do algoritmo e a arquitetura para controle e comunicação entre as diversas partes do projeto; O capítulo 4 (quatro) mostra os resultados e discussões de simulação e testes experimentais dos processo na execução do pouso e decolagem; Por fim, o capítulo 5 (cinco) traz todas as conclusões do trabalho realizado e sugestões de trabalhos futuros.
+
+
+
+
