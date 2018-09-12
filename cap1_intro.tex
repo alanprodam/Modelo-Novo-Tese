@@ -41,7 +41,7 @@ Verifica-se a utilização de ArUco pelo fato de ser uma biblioteca de código a
 
 \subsection{Objetivo}
 
-O presente trabalho tem como objetivo principal desenvolver e simular um sistema de pouso e decolagem de precisão para veículos quadrotores autônomos. A tese visa realizar o controle do sistema utilizando técnicas de visão computacional simuladas via V-REP usando um quadrotor com cãmera voltada para baixo. O algorítimo do sistema fará a detecção de marcadores de decolagem/pouso via \textit{tag} ArUco, contornando a necessidade de uso de GPS e IMUs que possuem erros de localização inerentes ao seu sensoriamento. A proposta basea-se em obter um algorítimo que utilize a Rede Neural Convolucional (CNN) de forma a complementar a detecção da \textit{tag} ArUco clássica da maneira mais eficaz. Deseja-se criar dados de treinamento híbridos através de dados sintéticos e reais de forma a superar a limitações de casos específicos como detecção imprecisa a longa distância, oclusão parcial ou uso de câmeras com alta distorção. A metodologia adotada demanda as seguintes etapas:
+O presente trabalho tem como objetivo principal desenvolver e simular um sistema de pouso e decolagem de precisão para um VANT do tipo quadrotor. A tese visa realizar o controle do sistema utilizando somente técnicas de visão computacional simuladas via V-REP através de um quadrotor com câmera voltada para baixo. O algorítimo fará a detecção de marcadores de decolagem/pouso via \textit{tag} ArUco, retornando a posição do quadrotor em relação ao marcador, contornando erros inerentes a sensores de posicionamento, como IMU e GPS. A proposta baseia-se em obter um algorítimo que utilize a Rede Neural Convolucional (CNN) de forma a complementar a detecção da \textit{tag} ArUco clássica de maneira mais eficaz. Deseja-se criar dados de treinamento híbridos através de dados sintéticos e reais de forma a superar a limitações de casos específicos como detecção imprecisa a longa distância, oclusão parcial ou uso de câmeras com alta distorção. A metodologia adotada demanda as seguintes etapas:
 
 \begin{itemize}
   \item Realizar levantamento bibliográfico sobre os principais conceitos e desafios de pesquisa referentes a pouso e decolagem de precisão autônoma utilizando veículos quadrotores;
@@ -82,15 +82,44 @@ O presente trabalho tem como objetivo principal desenvolver e simular um sistema
 
 \subsection{Trabalhos Relacionado: Descolagem e Pouso Autônomo}
 
-	\subsubsection{Revisão Literária das Principais Técnicas}
+	%\textbf{Revisão Literária das Principais Técnicas de Decolagem e Pouso}
 
-	\subsubsection{Revisão Literária do Uso de Marcadores Fiduciais como \textit{Landmarks}}
+	%\textbf{Revisão Literária do Uso de Marcadores Fiduciais como \textit{Landmarks}}
 
-	\subsubsection{Revisão Literária das Técnicas de Redes Neurais Usadas para Aperfeiçoar a Detecção de \textit{Tags} ArUco}
+	%\textbf{Revisão Literária das Técnicas de Redes Neurais Usadas para Aperfeiçoar a Detecção de \textit{Tags} ArUco}
+	
+	Neste tópico, serão abordados os principais desafios referentes às técnicas existentes de decolagem e pouso de precisão com um quadrotor sem o uso de sensores de posicionamento, como IMU e GPS. O entendimento dessas técnicas são abordados através do levantamento bibliográfico e análise comparativa da literatura recente, sendo o principal objetivo deste tópico.
+
+	A revisão literária sobre as principais técnicas de decolagem e pouso de precisão para VANTs do tipo quadrotor usadas nesta tese é resumida através da Tabela~\ref{qd:estado-da-arte}, onde, destaca-se a principal abordagem e contribuição científica de cada referência. Em seguida, realiza-se uma análise comparativa destes trabalhos em relação ao trabalho proposto e os principais desafios superados por cada técnica.  
+    \begin{table}[h]
+	\caption{Resumo das principais abordagens e contribuições científicas relacionadas à decolagem e pouso de VANTs usando somente visão computacional.}
+	
+	\begin{center}
+		\begin{tabular}{ccc}
+		
+			\hline
+			\multirow{2}{*}{\textbf{Abordagem}} & \multirow{2}{*}{\textbf{Contribuição}} & \multirow{2}{*}{\textbf{Referências}} \\
+			&                                  &                         &                      \\ \hline
+			\multirow{2}{*}{landing} & \multirow{2}{*}{pouso em plataforma móvel} & \multirow{2}{*}{\citet{Forster2014}} \\
+			&                                  &                         &                       \\ \hline
+			\multirow{2}{*}{landing} & \multirow{2}{*}{pouso de precisão com Rqcode} & \multirow{2}{*}{\citet{Forster2014}} \\
+			&                                  &                         &                       \\ \hline
+			\multirow{2}{*}{aruco} & \multirow{2}{*}{novo modelo de Aruco} & \multirow{2}{*}{\citet{Forster2014}} \\
+			&                                  &                         &                        \\ \hline
+			\multirow{2}{*}{aruco} & \multirow{2}{*}{criação de dicionarios Aruco} & \multirow{2}{*}{\citet{Forster2014}} \\
+			&                                  &                         &                         \\ \hline
+			\multirow{2}{*}{redes cnn} & \multirow{2}{*}{Inteligencia artificial em marcadores} & \multirow{2}{*}{\citet{Forster2014}} \\
+			&                                  &                         &                          \\ \hline
+			\multirow{2}{*}{redes cnn} & \multirow{2}{*}{CNN aplicado em aruco} & \multirow{2}{*}{\citet{Forster2014}} \\
+			&                                  &                         &                           \\ \hline
+			
+		\end{tabular}
+	\end{center}
+	\label{qd:estado-da-arte}
+\end{table}
     
     
-    ------
-    
+
 %===================================================================================================
 
 \subsection{Contribuição Científica: Algorítimo de Decolagem e Pouso Autônomo}
