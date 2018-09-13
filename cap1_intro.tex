@@ -2,13 +2,13 @@
 
 \section{Motivação}
 
-O uso de Veículos Autônomos Aéreos Não Tripulados (VAANTs), também conhecidos como \textit{drones} ou quadrotores autônomos, vêm ganhando notoriedade nas últimas décadas seguido de aplicações cada vez mais inovadoras em quase todos os setores, sejam elas com propósito militar, de pesquisa, comércio, vigilância ou de lazer. Isto se deu devido ao avanço tecnológico computacional aliado a características cada vez mais autônomas dos VAANTs, demandando assim técnicas mais robustas para garantir a segurança das aeronaves. Justifica-se também este interesse por conta do crescente número de fabricantes, redução de preços e melhoria da qualidade dos componentes e sensores envolvidos \cite{Santos2014}.
+O uso de Veículos Autônomos Aéreos Não Tripulados (VAANTs), também conhecidos como \textit{drones} ou quadrotores autônomos, vêm ganhando notoriedade nas últimas décadas devido à sua alta versatilidade, manobrabilidade, avanço tecnológico computacional, seguido também de aplicações inovadoras em quase todos os setores, sejam elas com propósito militar, de pesquisa, comércio, vigilância ou de lazer. Justifica-se também este interesse por conta do crescente número de fabricantes, redução de preços, melhoria da qualidade dos componentes e sensores envolvidos, demandando assim técnicas mais robustas para garantir a segurança das aeronaves \cite{Santos2014}.
 
-Segundo definições de \citet{Duan2010}, VAANT é um tipo de sistema muito complexo que integra diferentes componentes de hardware, como o Sistema de Posicionamento Global (GPS), Unidade de Gerenciamento Inercial (IMU), controlador e diferentes componentes de software, como processamento de imagem e planejamento de trajetória. \citet{Costa2012} destaca a importância da IMU no sistema de localização dos VANNTs que integra bússola, barômetro, sonares e sensor GPS. Tanto o IMU quanto a bússola indicam a atitude; Barômetro e sonar podem ser usados para leitura de altitude, e o GPS para obter dados de posicionamento e também altitude. 
+Segundo definições de \citet{Duan2010}, VAANT é um tipo de sistema muito complexo que integra diferentes componentes de hardware, como o Sistema de Posicionamento Global (GPS), Unidade de Gerenciamento Inercial (IMU), controlador e diferentes componentes de software, como processamento de imagem e planejamento de trajetória. \citet{Costa2012} destaca a importância da IMU no sistema de localização dos VAANTs que integra bússola, barômetro, sonares e sensor GPS. Tanto o IMU quanto a bússola indicam a atitude; Barômetro e sonar podem ser usados para leitura de altitude, e o GPS para obter dados de posicionamento e também altitude. 
 
 \subsection{Problematização da Descolagem e Pouso}
 
-Contudo, estes sensores de navegação podem apresentar erros da ordem de metros e de forma acumulativa, principalmente quando se diz a respeito de pousos ou decolagens utilizando GPS próximos a prédios, redes elétricas ou montanhas que bloqueiam ou anulam completamente o sinal de GPS. Este fato deprecia a qualidade, confiabilidade e custo da missão, visto que se faz necessário a aquisição de sensores com altissíma precisão e com blinagem eletrostática especial, resultando em custo elevado. Logo, a visão computacional é uma excelente solução de baixo custo e alto retorno de informações espaciais para controle de VANTs.
+Contudo, estes sensores de navegação podem apresentar erros da ordem de metros e de forma acumulativa, principalmente quando se diz a respeito de pousos ou decolagens utilizando GPS próximos a prédios, redes elétricas ou montanhas que bloqueiam ou anulam completamente o sinal de GPS. Este fato deprecia a qualidade, confiabilidade e custo da missão, visto que se faz necessário a aquisição de sensores com altíssima precisão e com blindagem eletrostática específica, resultando em custo elevado. Logo, a visão computacional é uma excelente solução de baixo custo e alto retorno de informações espaciais para o controle de VAANTs.
  
 Tal solução é apresentada através das câmeras de sensor exteroceptivo ou monocular, que além de atribuir precisão em navegação possui a vantagem de ser um sensor passivo, de baixa sensibilidade a ruídos e independente do sinal de GPS, permitindo voo em ambientes onde esse sinal não possui boa qualidade \cite{GUO2014}. Pode-se citar algorítimos de código aberto como de \citet{Forster2014} e \citet{Raul2016}, que trazem robustas soluções de navegação por visual monocular através de uma abordagem semi-direta que elimina a necessidade de extração de recursos caros e técnicas de correspondência robustas para estimativa de posição e orientação.
 
@@ -25,7 +25,7 @@ Segundo notícias de Maio de 2018. O Brasil já realizou a primeira simulação 
 
 \subsection{Sugestão da Solução}
 
-Com base nos argumentos descritos acima, verifica-se a motivação da tesa no âmbito de desenvolver e simular um sistema de pouso e decolagem de precisão para veículos quadrotores autônomos. A tese visa realizar o controle do sistema utilizando técnicas de visão computacional simuladas via V-REP usando um quadrotor com cãmera voltada para baixo. O algorítimo do sistema fará a detecção de marcadores de decolagem/pouso via \textit{tag} ArUco, contornando a necessidade de uso de GPS e IMUs que possuem erros de localização inerentes ao seu sensoriamento. A proposta basea-se em obter um algorítimo que utilize a Rede Neural Convolucional (CNN) de forma a complementar a detecção da \textit{tag} ArUco clássica da maneira mais eficaz.  Deseja-se criar dados de treinamento híbridos através de dados sintéticos e reais de forma a superar a limitações de casos específicos como detecção imprecisa a longa distância, oclusão parcial ou uso de câmeras com alta distorção. 
+Com base nos argumentos descritos acima, verifica-se a motivação da tesa no âmbito de desenvolver e simular um sistema de decolagem e pouso de precisão autônoma para um VAANT do tipo quadrotor. A tese visa realizar o controle do sistema utilizando somente técnicas de visão computacional simuladas via V-REP usando um quadrotor com câmera monocular. O algorítimo inicialmente detecta o local de decolagem/pouso via marcador fiducial \textit{tag} ArUco, em seguida retorna a posição do quadrotor em relação ao marcador, contornando erros inerentes a sensores de posicionamento, como IMU e GPS. A proposta baseia-se em obter um algorítimo que utilize a Rede Neural Convolucional (CNN) de forma a complementar a detecção da \textit{tag} ArUco clássica da maneira mais eficaz. Deseja-se criar dados de treinamento híbridos através de dados sintéticos e reais de forma a superar a limitações de casos específicos como detecção imprecisa a longa distância, oclusão parcial ou uso de câmeras com alta distorção. 
 
 Verifica-se a utilização de ArUco pelo fato de ser uma biblioteca de código aberto para detecção de marcadores fiduciais. Segundo \citet{Aruco2014}, a biblioteca permite estimar a pose de uma câmera a partir de um ou vários marcadores que são analisados em paralelo, onde, cria-se uma imagem canônica no nível da pirâmide que alcança o melhor equilíbrio entre qualidade e tamanho, sendo atualmente uma das estratégias mais investigas para uso como marcador de pouso e rastreamento com VAANTs, além de dispor de criação de marcadores personalizados. 
 
@@ -41,7 +41,7 @@ Verifica-se a utilização de ArUco pelo fato de ser uma biblioteca de código a
 
 \subsection{Objetivo}
 
-O presente trabalho tem como objetivo principal desenvolver e simular um sistema de pouso e decolagem de precisão para um VANT do tipo quadrotor. A tese visa realizar o controle do sistema utilizando somente técnicas de visão computacional simuladas via V-REP através de um quadrotor com câmera voltada para baixo. O algorítimo fará a detecção de marcadores de decolagem/pouso via \textit{tag} ArUco, retornando a posição do quadrotor em relação ao marcador, contornando erros inerentes a sensores de posicionamento, como IMU e GPS. A proposta baseia-se em obter um algorítimo que utilize a Rede Neural Convolucional (CNN) de forma a complementar a detecção da \textit{tag} ArUco clássica de maneira mais eficaz. Deseja-se criar dados de treinamento híbridos através de dados sintéticos e reais de forma a superar a limitações de casos específicos como detecção imprecisa a longa distância, oclusão parcial ou uso de câmeras com alta distorção. A metodologia adotada demanda as seguintes etapas:
+O presente trabalho tem como objetivo principal desenvolver e simular um sistema de decolagem e pouso de precisão autônoma para um VAANT do tipo quadrotor. A tese visa realizar o controle do sistema utilizando somente técnicas de visão computacional simuladas via V-REP usando um quadrotor com câmera monocular. O algorítimo inicialmente detecta o local de decolagem/pouso via marcador fiducial \textit{tag} ArUco, em seguida retorna a posição do quadrotor em relação ao marcador, contornando erros inerentes a sensores de posicionamento, como IMU e GPS. A proposta baseia-se em obter um algorítimo que utilize a Rede Neural Convolucional (CNN) de forma a complementar a detecção da \textit{tag} ArUco clássica da maneira mais eficaz. Deseja-se criar dados de treinamento híbridos através de dados sintéticos e reais de forma a superar a limitações de casos específicos como detecção imprecisa a longa distância, oclusão parcial ou uso de câmeras com alta distorção. . A metodologia adotada demanda as seguintes etapas:
 
 \begin{itemize}
   \item Realizar levantamento bibliográfico sobre os principais conceitos e desafios de pesquisa referentes a pouso e decolagem de precisão autônoma utilizando veículos quadrotores;
@@ -62,7 +62,7 @@ O presente trabalho tem como objetivo principal desenvolver e simular um sistema
    
    \item Implementar e simular no V-REP o algorítimo desenvolvido (CNN) de forma a complementar a detecção da \textit{tag} ArUco clássica da maneira mais eficaz.
    
-   \item Coletar dados estatísticos dos ensaios simulados via V-REP e analisar o desempenho do sistema autônomo projetado;
+   %\item Coletar dados estatísticos dos ensaios simulados via V-REP e analisar o desempenho do sistema autônomo projetado;
    
     \item Determinar os melhores parâmetros visando eficiência na identificação de marcadores a longa distância, onclusões parciais e distorção de câmera;
     
@@ -88,37 +88,46 @@ O presente trabalho tem como objetivo principal desenvolver e simular um sistema
 
 	%\textbf{Revisão Literária das Técnicas de Redes Neurais Usadas para Aperfeiçoar a Detecção de \textit{Tags} ArUco}
 	
-	Neste tópico, serão abordados os principais desafios referentes às técnicas existentes de decolagem e pouso de precisão com um quadrotor sem o uso de sensores de posicionamento, como IMU e GPS. O entendimento dessas técnicas são abordados através do levantamento bibliográfico e análise comparativa da literatura recente, sendo o principal objetivo deste tópico.
-
-	A revisão literária sobre as principais técnicas de decolagem e pouso de precisão para VANTs do tipo quadrotor usadas nesta tese é resumida através da Tabela~\ref{qd:estado-da-arte}, onde, destaca-se a principal abordagem e contribuição científica de cada referência. Em seguida, realiza-se uma análise comparativa destes trabalhos em relação ao trabalho proposto e os principais desafios superados por cada técnica.  
-    \begin{table}[h]
-	\caption{Resumo das principais abordagens e contribuições científicas relacionadas à decolagem e pouso de VANTs usando somente visão computacional.}
+	%Neste tópico, serão abordados os principais desafios referentes às técnicas existentes de decolagem e pouso de precisão com um quadrotor sem o uso de sensores de posicionamento, como IMU e GPS. O entendimento dessas técnicas são abordados através do levantamento bibliográfico e análise comparativa da literatura recente, sendo o principal objetivo deste tópico.
 	
-	\begin{center}
+	A revisão de literatura sugere que a maioria das implementações de técnicas desenvolvidas disponíveis podem ser classificadas em 2 (duas) categorias: A primeira com sistemas que fazem uso de sensores de imagem e a segunda com sistemas cujas capacidades de navegação são baseadas em sensores ativos, como lasers e sonares em casos de ambientes internos e IMU e GPS em casos de ambiente externo.
+	
+    abordagem que utiliza marcadores fiduciais clássicos
+    abordagem que utiliza PX4Flow via técnica Optical Flow e IR-LOCK via câmera PIXY. 
+    
+	A revisão literária sobre as principais técnicas de decolagem e pouso de precisão para VANTs do tipo quadrotor usadas nesta tese é resumida através da Tabela~\ref{qd:estado-da-arte}, onde, destaca-se a principal abordagem e contribuição científica de cada referência. Em seguida, realiza-se uma análise comparativa destes trabalhos em relação ao trabalho proposto e os principais desafios superados por cada técnica. 
+	
+    \begin{table}[h]
+    \centering
+	\caption{Resumo das principais abordagens e contribuições científicas relacionadas à decolagem e pouso de VANTs usando somente visão computacional.}
+	%\vspace{0.5cm}
 		\begin{tabular}{ccc}
-		
+		   
 			\hline
-			\multirow{2}{*}{\textbf{Abordagem}} & \multirow{2}{*}{\textbf{Contribuição}} & \multirow{2}{*}{\textbf{Referências}} \\
+			\multirow{3}{*}{\textbf{Abordagem}} & \multirow{3}{*}{\textbf{Contribuição}} & \multirow{3}{*}{\textbf{Referências}} \\
 			&                                  &                         &                      \\ \hline
-			\multirow{2}{*}{landing} & \multirow{2}{*}{pouso em plataforma móvel} & \multirow{2}{*}{\citet{Forster2014}} \\
+			\multirow{3}{*}{Pouso Autônomo em} \\ \multirow{4}{*}{Plataforma Móvel} & \multirow{2}{*}{Utilização de Navegação Monocular} & \multirow{2}{*}{\citet{Gilberto2016}} \\
 			&                                  &                         &                       \\ \hline
-			\multirow{2}{*}{landing} & \multirow{2}{*}{pouso de precisão com Rqcode} & \multirow{2}{*}{\citet{Forster2014}} \\
+			\multirow{3}{*}{landing}   & \multirow{3}{*}{pouso de precisão com Rqcode}      & \multirow{3}{*}{\citeonline{Forster2014}} \\
 			&                                  &                         &                       \\ \hline
-			\multirow{2}{*}{aruco} & \multirow{2}{*}{novo modelo de Aruco} & \multirow{2}{*}{\citet{Forster2014}} \\
+			\multirow{3}{*}{aruco}     & \multirow{3}{*}{novo modelo de Aruco}              & \multirow{2}{*}{\citet{Forster2014}} \\
 			&                                  &                         &                        \\ \hline
-			\multirow{2}{*}{aruco} & \multirow{2}{*}{criação de dicionarios Aruco} & \multirow{2}{*}{\citet{Forster2014}} \\
+			\multirow{3}{*}{aruco}     & \multirow{3}{*}{criação de dicionarios Aruco}      & \multirow{2}{*}{\citet{Jayatilleke2013}} \\
 			&                                  &                         &                         \\ \hline
-			\multirow{2}{*}{redes cnn} & \multirow{2}{*}{Inteligencia artificial em marcadores} & \multirow{2}{*}{\citet{Forster2014}} \\
+			\multirow{3}{*}{redes cnn} & \multirow{3}{*}{Inteligencia artificial em marcadores} & \multirow{2}{*}{\citet{Faigl2013}} \\
 			&                                  &                         &                          \\ \hline
-			\multirow{2}{*}{redes cnn} & \multirow{2}{*}{CNN aplicado em aruco} & \multirow{2}{*}{\citet{Forster2014}} \\
+			\multirow{3}{*}{redes cnn} & \multirow{3}{*}{CNN aplicado em aruco}             & \multirow{2}{*}{\citet{Pestana2016}} \\
 			&                                  &                         &                           \\ \hline
-			
+			\multirow{3}{*}{redes cnn} & \multirow{3}{*}{CNN aplicado em aruco}             & \multirow{2}{*}{\citet{Salinas2013}} \\
+			&                                  &                         &                           \\ \hline
 		\end{tabular}
-	\end{center}
+
 	\label{qd:estado-da-arte}
 \end{table}
     
+    O trabalho de \citet{Gilberto2016} traz uma abordagem de pouso autônomo em uma plataforma móvel, destaca-se a utilização de técnicas de odometria monocular + estimação da plataforma através de uma segunda câmera, onde os mesmo já sabem o modelo cinemática da base móvel, aplicou-se um filtro de calma entre o modelo cinemático, IMU e visão para aumentar a frequência de amostragem
     
+    A principal motivação de usar sensores de imagem é seu peso leve e baixo consumo de energia. Para este fim, vários abordagens utilizaram marcadores visuais para simplificar a problema de localização \cite{Jayatilleke2013}, \cite{Faigl2013}, \cite{Pestana2016} e \cite{Salinas2013}.
 
 %===================================================================================================
 
