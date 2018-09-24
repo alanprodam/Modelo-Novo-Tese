@@ -27,9 +27,9 @@ Segundo \citet{Gilberto2016} Uma das principais limitações dos VAANTs em prati
 
 \subsection{Sugestão da Solução}
 
-Com base nos argumentos descritos acima, verifica-se a motivação da tesa no âmbito de desenvolver e simular um sistema para UAV do tipo quadrotor capaz de aterrissar de forma autônoma um alvo pré-definido e estático. A tese visa realizar o controle do UAV usando apenas sensoriamento por visão e computação embarcada, sem depender de qualquer infraestrutura externa. A simulação é feita via V-REP usando linguagem \textit{Python} e captura de imagem monocular. O algorítimo inicialmente detecta o local de decolagem/pouso via marcador fiducial \textit{tag} ArUco, em seguida retorna a posição do quadrotor em relação ao marcador, contornando erros inerentes a sensores de posicionamento, como IMU e GPS. O diferencial da proposta baseia-se em obter um algorítimo que utilize a Rede Neural Convolucional (CNN) de forma a complementar a detecção da \textit{tag} ArUco clássica da maneira mais eficaz. Deseja-se criar dados de treinamento híbridos através de dados sintéticos e reais de forma a superar a limitações de casos específicos como detecção imprecisa a longa distância, oclusão parcial ou uso de câmeras com alta distorção. 
+Com base nos argumentos descritos acima, verifica-se a motivação da tesa no âmbito de desenvolver e simular um sistema para UAV do tipo quadrotor capaz de aterrissar de forma autônoma um alvo pré-definido e estático. A tese visa realizar o controle do UAV usando apenas sensoriamento por visão e computação embarcada, sem depender de qualquer infraestrutura externa. A simulação é feita via V-REP usando linguagem \textit{Python} e captura de imagem monocular. O algorítimo inicialmente detecta o local de decolagem/pouso via marcador fiducial \textit{tag} \textit{ArUco}, em seguida retorna a posição do quadrotor em relação ao marcador, contornando erros inerentes a sensores de posicionamento, como IMU e GPS. O diferencial da proposta baseia-se em obter um algorítimo que utilize a Rede Neural Convolucional (CNN) de forma a complementar a detecção da \textit{tag} \textit{ArUco} clássica da maneira mais eficaz. Deseja-se criar dados de treinamento híbridos através de dados sintéticos e reais de forma a superar a limitações de casos específicos como detecção imprecisa a longa distância, oclusão parcial ou uso de câmeras com alta distorção. 
 
-Verifica-se a utilização de ArUco pelo fato de ser uma biblioteca de código aberto para detecção de marcadores fiduciais. Segundo \citet{Aruco2014}, a biblioteca permite estimar a pose de uma câmera a partir de um ou vários marcadores que são analisados em paralelo, onde, cria-se uma imagem canônica no nível da pirâmide que alcança o melhor equilíbrio entre qualidade e tamanho, sendo atualmente uma das estratégias mais investigas para uso como marcador de pouso e rastreamento com VAANTs, além de dispor de criação de marcadores personalizados. 
+Verifica-se a utilização de \textit{ArUco} pelo fato de ser uma biblioteca de código aberto para detecção de marcadores fiduciais. Segundo \citet{Aruco2014}, a biblioteca permite estimar a pose de uma câmera a partir de um ou vários marcadores que são analisados em paralelo, onde, cria-se uma imagem canônica no nível da pirâmide que alcança o melhor equilíbrio entre qualidade e tamanho, sendo atualmente uma das estratégias mais investigas para uso como marcador de pouso e rastreamento com VAANTs, além de dispor de criação de marcadores personalizados. 
 
 %Contudo, tem-se ainda o desafio de identificação a longo alcance, visto que o marcador fiducial tem um limite de tamanho por distancia de identificação segura. Ou seja, para alturas elevadas acima de 30 metros se faz necessário o uso de uma segunda abordagem, um algoritmo de odometria visual monocular que mesmo sem a identificação do marcador, guie o \textit{drone} próximo a altura de identificação segura. 
 
@@ -41,9 +41,9 @@ Verifica-se a utilização de ArUco pelo fato de ser uma biblioteca de código a
 
 %Por fim, serão realizados testes experimentais que verifiquem o desempenho do sistema desenvolvido frente a 2 (duas) abordagens utilizadas para pouso de precisão: 1.PX4Flow via técnica Optical Flow; 2.IR-LOCK via câmera PIXY. Estima-se o uso do sistema em uma aplicação real em missões de entregas (\textit{deliveries}) de medicamento na cidade do Porto-Portugal vinculada a empresa \textit{Connec Robotics}. As mesmas técnicas utilizadas para o pouso bodem ser replicadas para a decolagem que também apresenta grandes problemáticas quando guiada somente por GPS. 
 
-\subsection{Objetivo}
+%\subsection{Objetivo}
 
-O presente trabalho tem como objetivo principal desenvolver e simular um sistema de decolagem e pouso de precisão autônoma para um VAANT do tipo quadrotor. A tese visa realizar o controle do sistema utilizando somente técnicas de visão computacional simuladas via V-REP usando um quadrotor com câmera monocular. O algorítimo inicialmente detecta o local de decolagem/pouso via marcador fiducial \textit{tag} ArUco, em seguida retorna a posição do quadrotor em relação ao marcador, contornando erros inerentes a sensores de posicionamento, como IMU e GPS. O diferencial da proposta baseia-se em obter um algorítimo que utilize a Rede Neural Convolucional (CNN) de forma a complementar a detecção da \textit{tag} ArUco clássica da maneira mais eficaz. Deseja-se criar dados de treinamento híbridos através de dados sintéticos e reais de forma a superar a limitações de casos específicos como detecção imprecisa a longa distância, oclusão parcial ou uso de câmeras com alta distorção.
+%O presente trabalho tem como objetivo principal desenvolver e simular um sistema de decolagem e pouso de precisão autônoma para um VAANT do tipo quadrotor. A tese visa realizar o controle do sistema utilizando somente técnicas de visão computacional simuladas via V-REP usando um quadrotor com câmera monocular. O algorítimo inicialmente detecta o local de decolagem/pouso via marcador fiducial \textit{tag} ArUco, em seguida retorna a posição do quadrotor em relação ao marcador, contornando erros inerentes a sensores de posicionamento, como IMU e GPS. O diferencial da proposta baseia-se em obter um algorítimo que utilize a Rede Neural Convolucional (CNN) de forma a complementar a detecção da \textit{tag} ArUco clássica da maneira mais eficaz. Deseja-se criar dados de treinamento híbridos através de dados sintéticos e reais de forma a superar a limitações de casos específicos como detecção imprecisa a longa distância, oclusão parcial ou uso de câmeras com alta distorção.
 
 \vspace{\fill}
 
@@ -95,7 +95,7 @@ O presente trabalho tem como objetivo principal desenvolver e simular um sistema
 
 	%\textbf{Revisão Literária das Técnicas de Redes Neurais Usadas para Aperfeiçoar a Detecção de \textit{Tags} ArUco}
 	
-	Neste tópico, será abordado uma revisão literária sobre as principais técnicas utilizadas para decolagem e pouso de precisão para VAANTs do tipo quadrotor, bem como os principais trabalhos que utilizam técnicas para detecção de marcadores visuais como solução do problema de localização. Priorizou-se técnicas que utilizaram somente visão computacional a fim de criar um estado da arte mais próximo do proposta pela tese, a qual visa contornar erros inerentes a sensores de posicionamento como IMU e GPS ou sensores ativos como lasers e sonares. 
+	Neste tópico, será abordado uma revisão literária sobre as principais técnicas utilizadas para decolagem e pouso de precisão para UAV do tipo quadrotor, bem como, os principais trabalhos que utilizam técnicas para detecção de marcadores visuais como solução do problema de localização. Priorizou-se técnicas que utilizaram somente visão computacional a fim de criar um estado da arte mais próximo do proposta pela tese, a qual visa contornar erros inerentes a sensores de posicionamento como IMU e GPS ou sensores ativos como lasers e sonares. 
 	
 	O entendimento dessas técnicas é exposta de forma resumida através da Tabela~\ref{qd:estado-da-arte}, onde, destaca-se a principal abordagem e contribuição científica de cada referência. Em seguida, realiza-se uma análise comparativa destes trabalhos em relação ao trabalho proposto e os principais desafios superados por cada técnica, sendo o principal objetivo deste tópico. 
 	
@@ -106,8 +106,8 @@ O presente trabalho tem como objetivo principal desenvolver e simular um sistema
 	\begin{tabular}{ccc}
 		   
 	\hline
-	\multirow{3}{*}{\textbf{Abordagem}} & \multirow{3}{*}{\textbf{Contribuição}} & \multirow{2}{*}{\textbf{Referências}} \\
-	&                                  &                         &                      \\ \hline
+	\multirow{2}{*}{\textbf{Abordagem}} & \multirow{2}{*}{\textbf{Contribuição}} & \multirow{2}{*}{\textbf{Referências}} \\
+	\\ \hline
 	\multirow{3}{*}{Odometria Monocular}  & \multirow{3}{*}{Sistema de Pouso Autônomo} &  \\
 	\multirow{3}{*}{Estimação da Plataforma} &  \multirow{3}{*}{em Plataforma Móvel}  & \multirow{2}{*}{\citet{Falanga2017}} \\
 	&                                  &                         &                       \\ \hline
@@ -120,14 +120,15 @@ O presente trabalho tem como objetivo principal desenvolver e simular um sistema
 	\multirow{3}{*}{Visão Computacional}  & \multirow{3}{*}{Pouso Autônomo} &  \\
 	\multirow{3}{*}{Operações Morfológicas} &  \multirow{3}{*}{Somente Técnicas de Visão}  & \multirow{2}{*}{\citet{Vidal2016}} \\
 	&                                  &                         &                       \\ \hline
-	\multirow{3}{*}{Marcador QR-Code}  & \multirow{3}{*}{Pouso Autônomo Preciso} &  \\
-	\multirow{3}{*}{GPS + Navegação Ótica} &  \multirow{3}{*}{em Relação ao GPS Isolado}  & \multirow{2}{*}{\citet{Maiman2017}} \\
+	\multirow{3}{*}{Orientação de Navegação}  & \multirow{3}{*}{Geração de Trajetórias de Pouso} &  \\
+	\multirow{3}{*}{Intrínseca de Tau} &  \multirow{3}{*}{ Baseado Espaço-Temporal em 4D}  & \multirow{2}{*}{\citet{Vetrella2017}} \\
+	&                                  &                         &                       \\ \hline
 	\end{tabular}
 
 	\label{qd:estado-da-arte}
 \end{table}
 
-    A revisão de literatura sugere que a maioria das implementações de técnicas para decolagem e pouso disponíveis podem ser classificadas em 2 (duas) categorias: A primeira com sistemas que fazem uso de sensores de imagem e a segunda com sistemas cujas capacidades de navegação são baseadas em sensores ativos, como lasers, sonares em casos de ambientes internos e IMU e GPS em casos de ambiente externo.
+    A literatura sugere que a maioria das implementações de técnicas para decolagem e pouso disponíveis podem ser classificadas em 2 (duas) categorias: A primeira com sistemas que fazem uso de sensores de imagem e a segunda com sistemas cujas capacidades de navegação são baseadas em sensores ativos, como lasers, sonares em casos de ambientes internos e IMU e GPS em casos de ambiente externo.
     
     Destaca-se inicialmente o trabalho de \citet{Falanga2017}, que traz uma abordagem prática, contando com um algorítimo de visão computacional avançado, fusão de multi-sensores para localização do veículo aéreo além de detecção e estimativa de movimento da plataforma móvel usando uma segunda câmera. O algorítimo de detecção visual da plataforma móvel é aplicado em um filtro de \textit{Kalman} atrelado ao modelo cinemático da plataforma, resultando em uma identificação da plataforma móvel com alta frequência.
     
@@ -137,27 +138,35 @@ O presente trabalho tem como objetivo principal desenvolver e simular um sistema
     
     Ainda referente a trabalhos com pouso autônomo, destaca-se o trabalho de \citet{Maiman2017}, que cria uma nova solução precisa e econômica para pouso com \textit{drones}. Diferente do objetivo proposto pela presente tese, o algorítimo desenvolvido por \citet{Maiman2017} chamado de \textit{GOLD} combina GPS com navegação ótica para reconhecer e descer de forma iterativa em direção a um ponto de pouso alvo o qual é identificado via detecção QR-Code. O trabalho traz como contribuição científica um pouso autônomo de baixo custo e mais preciso do que um sistema que utilize somente GPS.
     
-    Verifica-se o trabalho de \citet{Vidal2016} relevante para identificar os conceitos essenciais de um sistema de pouso autônomo que utiliza somente técnicas de visão computacional. O trabalho traz uma abordagem de visão computacional pura, utilizando somente técnicas de obtenção de contorno e reconhecimento de formas por operações morfológicas, \textit{thresholding} e outras técnicas matemáticas a fim de se obter processamento rápido e simples. O diferencial entre o trabalho de \citet{Vidal2016} e a tese apresentada é a técnica de detecção visual do marcador que não utiliza marcadores fiducial do tipo \textit{Tag} como \textit{ArUco}, \textit{AprilTag}, \textit{ARToolkit}, \textit{ARTag} ou \textit{QR-Code} e nem detecção avançada por rede neural. Tendo como contribuição científica a validação e implementação de técnicas simples e de rápido processamento em visão computacional, voltada para identificação de contorno e reconhecimento de forma por morfologia para pouso de \textit{drones} autônomos. 
-
-    A principal motivação de usar sensores de imagem é seu peso leve e baixo consumo de energia. Para este fim, a literatura sugeri várias abordagens que utilizam marcadores visuais para simplificar a problema de localização, como \cite{Jayatilleke2013}, \cite{Faigl2013}, \cite{Pestana2016} e \cite{Salinas2013}.
+    Verifica-se o trabalho de \citet{Vidal2016} relevante para identificar os conceitos essenciais de um sistema de pouso autônomo que utiliza somente técnicas de visão computacional. O trabalho traz uma abordagem de visão computacional pura, utilizando somente técnicas de obtenção de contorno e reconhecimento de formas por operações morfológicas, \textit{thresholding} e outras técnicas matemáticas a fim de se obter processamento rápido e simples. O diferencial entre o trabalho de \citet{Vidal2016} e a tese apresentada é a técnica de detecção visual do marcador que não utiliza marcadores fiducial do tipo \textit{Tag} como \textit{ArUco}, \textit{AprilTag}, \textit{ARToolkit}, \textit{ARTag} ou \textit{QR-Code} e nem detecção avançada por rede neural. Tendo como contribuição científica a validação e implementação de técnicas simples e de rápido processamento em visão computacional, voltada para identificação de contorno e reconhecimento de forma por morfologia para pouso de \textit{drones} autônomos.
     
-       abordagem que utiliza marcadores fiduciais clássicos
-    abordagem que utiliza PX4Flow via técnica Optical Flow e IR-LOCK via câmera PIXY. 
+    No trabalho de \citet{Vetrella2017}, desenvolveu-se um algoritmos flexível de geração de trajetória, sua contribuição científica permitiu altos níveis de autonomia para as fases críticas da missão, como decolagem, cobertura de área e pouso. Diferente da tesa apresentada, o trabalho de \citet{Vetrella2017} apresenta uma abordagem de orientação que usa a teoria de orientação intrínseca da tau aprimorada para criar trajetórias espaço-temporais em 4D para um tempo-para-contato desejado com uma plataforma de aterrissagem rastreada por um sensor visual.
+    
+
+    A principal motivação de usar sensores de imagem é seu peso leve e baixo consumo de energia. Para este fim, a literatura sugere várias abordagens que utilizam marcadores visuais para simplificar a problema de localização, como exemplo, têm-se o trabalho de \citet{Pestana2016}, que faz uso de marcadores visuais \textit{ArUco} \citet{Salinas2013}, a abordagem proposta por \citet{Jayatilleke2013} que requer um conhecimento prévio de todas as poses de referência, enquanto que em \citet{Faigl2013}, o UAV é necessário para manter os marcadores externos sempre visíveis. Nessas abordagens, o uso de marcadores visuais fornece uma localização precisa, com a desvantagem de alterar a área a ser explorada.
+    
+    Outras abordagens baseadas em sensores de imagem para realizar a navegação e localização, evitar colisões são os trabalhos de \citet{Zingg2010} e \citet{Lippiello2011}, onde \textit{Pyramidal Lukas-Kanade} é usado para a estimativa do fluxo óptico. As técnicas utilizam informações computadas por algoritmos de fluxo óptico para obter um mapa de profundidade.
+    
+    Outras abordagens interessantes e mais inovadoras usam o Redes Neurais para classificação e navegação de cenas internas \citet{Kim2015}, utilizando uma \textit{Convolutional Neural Network} (CNN) para aprender uma estratégia de controle baseada em dados capturados de vôos realizados por um piloto especialista humano.
+    
+    %abordagem que utiliza marcadores fiduciais clássicos ...abordagem que utiliza PX4Flow via técnica Optical Flow e IR-LOCK via câmera PIXY. 
     
 
 %===================================================================================================
 
-\subsection{Contribuição Científica: Algorítimo de Decolagem e Pouso Autônomo}
+\section{Contribuição Científica}
+    
+    Na presente tese, apresenta-se um sistema validado por simulação via V-REP para UAV do tipo quadrotor capaz de decolar e pousar de forma autônoma em um alvo estático. O algorítimo é baseado somente em técnicas de visão computacional para detectar a plataforma de pouso através de marcador fiducial e assim retornar a posição do quadrotor em relação ao marcador que foi desenvolvido para ter identificação única. Logo, não há necessidade de nenhum conhecimento prévio sobre a localização da plataforma de pouso. O sistema apresenta baixo custo por eliminar a necessidade de instalação de infraestrutura externa, como um sistema de captura de movimento, além de contornar erros inerentes a sensores de posicionamento, como IMU e GPS. O algorítimo utiliza Rede Neural Convolucional (CNN) de forma a complementar a detecção da \textit{tag} \textit{ArUco} clássica da maneira mais eficaz e supera as limitações da detecção imprecisa a longa distância, oclusão parcial ou uso de câmeras com alta distorção.
 
-	\subsubsection{Dicionário de Marcadores para Pouso/Decolagem de Identificação Única}
+	%\subsection{Dicionário de Marcadores para Pouso/Decolagem de Identificação Única}
 
-	\subsubsection{Utilização da (CNN) para Complementar a detecção da \textit{tag} ArUco de forma Eficaz}
+	%\subsection{Utilização da (CNN) para Complementar a detecção da \textit{tag} ArUco de forma Eficaz}
 
-	\subsubsection{Desenvolvimento de um Sistema de Baixo Custo para Decolagem e Pouso Autônomo de Quadrotores sem uso de GPS ou IMU}
+	%\subsection{Desenvolvimento de um Sistema de Baixo Custo para Decolagem e Pouso Autônomo de Quadrotores sem uso de GPS ou IMU}
 
 \section{Estruturação da Tese}
 
-Os capítulos seguintes descrevem o trabalho da seguinte forma: O capítulo 2 (dois) traz o estado da arte, descrevendo uma visão geral sobre os VAANTs, os trabalhos relacionas e por fim a contribuição cientifica da pesquisa; O capítulo 3 (três) aborda sobre o sistema de pouso e decolagem desenvolvido, bem como as técnicas matemáticas para localização da aeronave no ambiente, descreve as linguagens e bibliotecas de programação empregadas no desenvolvimento do algoritmo e a arquitetura para controle e comunicação entre as diversas partes do projeto; O capítulo 4 (quatro) mostra os resultados e discussões de simulação e testes experimentais dos processo na execução do pouso e decolagem; Por fim, o capítulo 5 (cinco) traz todas as conclusões do trabalho realizado e sugestões de trabalhos futuros.
+Os capítulos seguintes descrevem o trabalho da seguinte forma: O capítulo 2 (dois) apresenta o marcador fiducial utilizado como plataforma de pouso, descrevendo seus principais conceitos; O capítulo 3 (três) aborda sobre a técnica de rede neural utilizadas complementarmente na detecção da plataforma de pouso; O capítulo 4 (quatro) descreve o ambiente de simulação, expondo a plataforma usada e as características do veículo aéreo e controlador utilizado; O capítulo 5 (cinco) define as tarefas realizadas e apresenta os resultados e discussões; Por fim, o capítulo 6 (seis) aborda todas as conclusões do trabalho realizado e sugestões de trabalhos futuros.
 
 
 
