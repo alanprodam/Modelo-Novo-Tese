@@ -1,0 +1,55 @@
+\chapter{Marcadores Fiduciais}
+
+    Nesse capítulo, aborda-se sobre o marcador fiducial utilizado como plataforma de pouso, descrevendo seus principais conceitos, tipos e aplicações...
+
+\section{Definição}
+
+Em particular, marcadores fiduciais baseados em quadrados são os mais populares no campo da realidade aumentada, uma vez que um único marcador fornece os quatro pontos necessários para estimar a pose da câmera (dado que está esteja devidamente calibrado). Em geral, os marcadores baseados em quadrados usam um código binário interno para identificação, detecção de erros e correção \cite{Ramirez2018}.
+
+O processo de detecção deste tipo de marcadores pode ser dividido em duas etapas principais. O primeiro passo é a pesquisa de candidatos, que consiste em encontrar formas quadradas na imagem que se parecem com marcadores. O segundo passo é o estágio de identificação, onde a codificação interna dos candidatos é analisada para determinar se realmente são marcadores e se pertencem ao conjunto considerado válido, também conhecido como dicionário.
+
+\section{Tipos de de Marcadores}
+
+Existem vários tipos de marcadores, cada um deles pertencente a um dicionário. Cada biblioteca propôs seu próprio conjunto de marcadores. Então, temos \textit{ArToolKit+}, \textit{Chilitags}, \textit{AprilTags} e, claro, o dicionário \textit{ArUco}. O design de um dicionário é importante, já que a ideia é que seus marcadores sejam o mais diferentes possíveis para evitar confusões. 
+
+%ref = {http://www.scielo.br/scielo.php?script=sci_arttext&pid=S1982-21702014000300626}
+
+Propomos usar o dicionário ARUCO-MIP-36h12 que desenvolvemos em um trabalho de pesquisa. No entanto, nossa biblioteca pode detectar os dicionários de outras bibliotecas, como: \textit{Chiltags}, \textit{AprilTags}, \textit{ARToolKit+}.
+
+\section{Identificação do Marcador}
+
+Segundo \citet{Salinas2013}, o processo de detecção do alvo ArUco inicia-se com a aplicação de um limiar adaptativo, de modo a obter as bordas. Em seguida são identificados os contornos dos alvos. Além dos alvos, são detectadas também várias bordas indesejadas. Estas bordas com pequeno número de pontos são eliminadas. Em seguida é realizada uma aproximação poligonal do contorno, de modo a manter os contornos côncavos com exatamente quatro cantos (retângulos). Então, os cantos são ordenados no sentido anti-horário e os retângulos muito próximos entre si são removidos, pois a detecção de bordas normalmente detecta a parte externa e interna da borda do marcador, preservando apenas a borda externa. Em seguida é tratada a perspectiva de projeção de modo a obter uma vista frontal da área de um retângulo, usando uma transformação projetiva. Usando o algoritmo de Otsu \cite{OTSU1979} e \cite{Artero2000}, assume-se uma distribuição bimodal e encontra-se o limiar que maximiza a variância extra-classe, mantendo uma baixa variação intra-classe. O marcador então é dividido numa grade 6x6, das quais as 25 células internas contém as informações de identificação. O resto corresponde à coroa externa. Inicialmente, verifica-se a presença da coroa. Em seguida, as 25 células internas são lidas para verificar se fornecem um código válido (pode ser necessário rotacionar o alvo para se obter um código válido). Caso seja um marcador válido, refinam-se os cantos usando uma técnica de interpolação sub-pixel.
+
+\section{\textit{Augmented Reality: Aruco 3}}
+
+\textit{ArUco 3} é uma biblioteca de código aberto de realidade aumentada, criada para detectar marcadores fiduciais quadrados em imagens. Tendo a câmera devidamente calibrada, poderá ser estimado a pose da câmera em relação aos marcadores. A biblioteca é escrita em C++, mas há ferramentas para usar a biblioteca sem programação.
+
+\section{Calibração de Câmera}
+
+\subsection{Conceito}
+
+\subsection{Projeção de Ponto 3D na Câmera}
+
+\subsection{Calibração com ArUco}
+
+\section{Estimação da Pose da Câmera com ArUco}
+
+\section{Dicionário de Marcadores Proposto}
+
+\section{Aplicação como \textit{Landmarker}: Marcador de Pouso}
+
+Marcadores planares quadrados tornaram-se um método popular para estimar poses em aplicações como robôs autônomos, veículos não tripulados e treinadores virtuais. Os marcadores permitem estimar a posição de uma câmera monocular com custo mínimo, alta robustez e velocidade. Basta criar marcadores com uma impressora normal, colocá-los no ambiente desejado para cobrir a área de trabalho e registrar sua localização a partir de um conjunto de imagens.
+
+\section{Problemas de Detecção: Oclusão - Distorção - Falha em Longas Distâncias}
+
+Um aspecto chave de tais dicionários é a distância inter-marcadores citada por \citet{Fiala2010}, que é a distância mínima de \textit{Hamming} entre os códigos binários dos marcadores, considerando as quatro rotações possíveis. Esta distância define o número máximo de \textit{bits} que podem ser corrigidos sem produzir um erro de confusão inter-marcadores, isto é, um marcador erroneamente identificado como diferente. Como consequência, a distância entre marcadores está diretamente relacionada aos recursos de correção de erros de um dicionário. Quanto maior o inter-marcador, menores as taxas de confusão de falso negativo e inter-marcadores e, portanto, maior a robustez do processo.
+
+Por exemplo, a figura 1 mostra um exemplo de erro de confusão inter-marcadores e a importância de grandes distâncias inter-marcadores. Os dois primeiros marcadores têm uma curta distância de apenas 1 bit enquanto o terceiro marcador tem distâncias maiores de pelo menos 5  bits para o restante dos marcadores. Como pode ser visto na Figura ~\ref{fig:aruco-definicao} e, um único bit errôneo é suficiente para causar uma identificação errada do segundo marcador. Por outro lado, o terceiro marcador é identificado corretamente, apesar de ter um maior número de erros.
+
+%  Figura.
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=14cm, height=6 cm]{figuras/arucofig1.jpg}
+	\caption{Exemplo de erro de confusão entre marcadores,~\cite{Ramirez2018}.}
+	\label{fig:aruco-definicao}
+\end{figure}
