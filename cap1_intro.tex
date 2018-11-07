@@ -95,6 +95,8 @@ Verifica-se a utilização de \textit{ArUco} pelo fato de ser uma biblioteca de 
 
 	%\textbf{Revisão Literária das Técnicas de Redes Neurais Usadas para Aperfeiçoar a Detecção de \textit{Tags} ArUco}
 	
+\subsection{Revisão Literária das Principais Técnicas de Decolagem e Pouso}
+	
 	Neste tópico, será abordado uma revisão literária sobre as principais técnicas utilizadas para decolagem e pouso de precisão para VAANT do tipo quadrotor, bem como, os principais trabalhos que utilizam técnicas para detecção de marcadores visuais como solução do problema de localização. Priorizou-se técnicas que utilizaram somente visão computacional a fim de criar um estado da arte mais próximo do proposta pela tese, a qual visa contornar erros inerentes a sensores de posicionamento como IMU e GPS ou sensores ativos como lasers e sonares. 
 	
 	O entendimento dessas técnicas é exposta de forma resumida através da Tabela~\ref{qd:estado-da-arte}, onde, destaca-se a principal abordagem e contribuição científica de cada referência. Em seguida, realiza-se uma análise comparativa destes trabalhos em relação ao trabalho proposto e os principais desafios superados por cada técnica, sendo o principal objetivo deste tópico. 
@@ -149,6 +151,8 @@ Verifica-se a utilização de \textit{ArUco} pelo fato de ser uma biblioteca de 
     Outras abordagens baseadas em sensores de imagem para realizar a navegação e localização, evitar colisões são os trabalhos de \citet{Zingg2010} e \citet{Lippiello2011}, onde \textit{Pyramidal Lukas-Kanade} é usado para a estimativa do fluxo óptico. As técnicas utilizam informações computadas por algoritmos de fluxo óptico para obter um mapa de profundidade.
     
     Outras abordagens interessantes e mais inovadoras usam o Redes Neurais para classificação e navegação de cenas internas \citet{Kim2015}, utilizando uma \textit{Convolutional Neural Network} (CNN) para aprender uma estratégia de controle baseada em dados capturados de vôos realizados por um piloto especialista humano.
+    
+    \subsection{Revisão Literária do Uso de Marcadores Fiduciais como \textit{Landmarks}}
     
     %abordagem que utiliza marcadores fiduciais clássicos ...abordagem que utiliza PX4Flow via técnica Optical Flow e IR-LOCK via câmera PIXY. 
     
