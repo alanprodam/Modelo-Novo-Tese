@@ -1,6 +1,6 @@
 \chapter{Marcadores Fiduciais}
 
-    Nesse capítulo, aborda-se sobre o marcador fiducial utilizado como plataforma de pouso, descrevendo seus principais conceitos, tipos e aplicações...
+    Nesse capítulo, aborda-se sobre o marcador fiducial utilizado como plataforma de pouso, descrevendo seus principais conceitos, aplicações e método de identificação. Aborda-se também o método de calibração utilizado e o método de estimação de pose da câmera utilizando \textit{ArUco}. Defini-se também o dicionário de marcador proposto, bem como suas vantagens e desvantagens de utilização, destacando os principais problemas apresentados pela estado da arte.
 
 \section{Definição}
 
@@ -8,34 +8,13 @@ Em particular, marcadores fiduciais baseados em quadrados são os mais populares
 
 O processo de detecção deste tipo de marcadores pode ser dividido em duas etapas principais. O primeiro passo é a pesquisa de candidatos, que consiste em encontrar formas quadradas na imagem que se parecem com marcadores. O segundo passo é o estágio de identificação, onde a codificação interna dos candidatos é analisada para determinar se realmente são marcadores e se pertencem ao conjunto considerado válido, também conhecido como dicionário.
 
-\section{Tipos de de Marcadores}
-
-Existem vários tipos de marcadores, cada um deles pertencente a um dicionário. Cada biblioteca propôs seu próprio conjunto de marcadores. Então, temos \textit{ArToolKit+}, \textit{Chilitags}, \textit{AprilTags} e, claro, o dicionário \textit{ArUco}. O design de um dicionário é importante, já que a ideia é que seus marcadores sejam o mais diferentes possíveis para evitar confusões. 
-
-Um sistema de referência fiducial é composto por um conjunto de marcadores válidos e um algoritmo que realiza sua detecção e possivelmente correção em imagens. Vários sistemas de marcadores fiduciais têm sido propostos na literatura como mostrado na Figura ~\ref{fig:aruco-tipos}.
-
-%  Figura.
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=10cm, height=8 cm]{figuras/aruco-tipos.jpg}
-	\caption{Exemplos de outros tipos de marcadores fiduciais,~\cite{Garrido2016}.}
-	\label{fig:aruco-tipos}
-\end{figure}
-
-As propostas mais simples consistem em usar pontos como marcadores fiduciais, como LEDs, esferas retrorreflexivas ou planas [14] , [15] , que podem ser segmentadas usando técnicas básicas sob condições controladas. Sua identificação é geralmente obtida a partir da posição relativa dos marcadores e geralmente envolve um processo complexo. Outras abordagens usam marcadores circulares planares onde a identificação é codificada em setores circulares ou anéis concêntricos [16] , [17] . No entanto, os marcadores circulares geralmente fornecem apenas um ponto de correspondência (o centro), tornando necessária a detecção de vários deles para estimar a pose.
-
-Outros tipos de marcadores fiduciais são baseados na detecção de \textit{blob}. \textit{Cybercode} [18] ou VisualCode [19] é derivado da tecnologia de códigos de barras 2D como \textit{MaxiCode} ou \textit{QR}, mas também pode fornecer com precisão vários pontos de correspondência. Outros marcadores fiduciais populares são os marcadores de amebas \textit{ReacTIVision} [20], que também são baseados na detecção de \textit{blob} e seu design foi otimizado usando algoritmos genéticos. Alguns autores propuseram o uso de classificadores treinados para melhorar a detecção em casos de má iluminação e desfoque causado pelo movimento rápido da câmera [21].
-
-\section{Utilização do Marcador Quadrado: Aplicação como \textit{Landmarker}}
+\section{Utilização do Marcador Quadrado: Aplicação como Marcador de Pouso}
 
 Marcadores planares quadrados tornaram-se um método popular para estimar poses em aplicações como robôs autônomos, veículos não tripulados e treinadores virtuais. Os marcadores permitem estimar a posição de uma câmera monocular com custo mínimo, alta robustez e velocidade. Basta criar marcadores com uma impressora normal, colocá-los no ambiente desejado para cobrir a área de trabalho e registrar sua localização a partir de um conjunto de imagens \cite{Ramirez2018}.
 
-Uma alternativa para as abordagens anteriores são os sistemas de marcadores fiduciais baseados em quadrados. Sua principal vantagem é que a presença de quatro pontos proeminentes pode ser empregada para obter a pose, enquanto a região interna é usada para identificação (usando um código binário ou um padrão arbitrário, como uma imagem). Na categoria de padrões arbitrários, um dos sistemas mais populares é o \textit{ARToolKit} [10] , um projeto de código aberto que tem sido amplamente utilizado na última década, especialmente na comunidade acadêmica. Marcadores \textit{ARToolKit} são compostos por uma borda preta larga com uma imagem interna que é armazenada em um banco de dados de padrões válidos. Apesar de sua popularidade, tem algumas desvantagens. Primeiro, ele usa uma abordagem de correspondência de modelos para identificar marcadores, obtendo altas taxas de confusão de falsos positivos e inter-marcadores.[22] . Em segundo lugar, o sistema usa um limiar global fixo para detectar quadrados, tornando-o muito sensível a diferentes condições de iluminação.
+O trabalho \textit{ArUco} de \citet{Aruco2014} é provavelmente o sistema mais popular para detecção de marcadores atualmente. Adapta-se a iluminação não uniforme, e é muito robusto, sendo capaz de fazer a detecção de erros e correção dos códigos binários implementados. Além disso, os autores propuseram um método para obter códigos binários ótimos (em termos de distância entre inter-marcadores) usando Programação Linear Inteira Mista  \citet{Garrido2016}. \textit{Chilitags}  \citet{Bonnard2013} é uma variação do \textit{ArUco} que emprega um método mais simples para decodificar os códigos binários do marcador. Tendo como base, resultados do trabalho de \citet{Ramirez2018}, verifica-se que o método tem um mau comportamento em imagens de alta resolução.
 
-
-Este trabalho utiliza da proposta de sistema de marcador fiducial baseado em quadrados com códigos binários. No entanto, em vez de usar um conjunto predefinido de marcadores, propomos um método para gerar dicionários de marcadores configuráveis ​​(com tamanho arbitrário e número de marcadores), contendo apenas o número de marcadores necessários. Nosso algoritmo produz marcadores usando um critério para maximizar a distância inter-marcadores e o número de transições de bits. Adicionalmente, um método para detectar e corrigir erros, baseado no dicionário obtido, é proposto. Este método permite a correção de erros de um maior número de bits errados em comparação com o estado atual dos sistemas da arte.
-
-%ref = {http://www.scielo.br/scielo.php?script=sci_arttext&pid=S1982-21702014000300626}
+Este trabalho utiliza da proposta de sistema de marcador fiducial baseado em quadrados com códigos binários. No entanto, em vez de usar um conjunto predefinido de marcadores, propomos um método para gerar dicionários de marcadores configuráveis (com tamanho arbitrário e número de marcadores), contendo apenas o número de marcadores necessários. Nosso algoritmo produz marcadores usando um critério para maximizar a distância inter-marcadores e o número de transições de bits. Adicionalmente, um método para detectar e corrigir erros, baseado no dicionário obtido, é proposto. Este método permite a correção de erros de um maior número de bits errados em comparação com o estado atual dos sistemas da arte.
 
 Propomos usar o dicionário \textit{ARUCO-MIP-36h12}, desenvolvido por \cite{Garrido2016} em um trabalho de pesquisa. No entanto, a biblioteca pode detectar também os dicionários de outras bibliotecas, como: \textit{Chiltags}, \textit{AprilTags}, \textit{ARToolKit+}.
 
@@ -87,6 +66,6 @@ Por exemplo, a figura 1 mostra um exemplo de erro de confusão inter-marcadores 
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=14cm, height=6 cm]{figuras/arucofig1.jpg}
-	\caption{Exemplo de erro de confusão entre marcadores,~\cite{Ramirez2018}.}
+	\caption{Exemplo de erro de confusão entre marcadores,~\citet{Ramirez2018}.}
 	\label{fig:aruco-definicao}
 \end{figure}

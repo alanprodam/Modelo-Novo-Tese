@@ -45,7 +45,7 @@ Verifica-se a utilização de \textit{ArUco} pelo fato de ser uma biblioteca de 
 
 %O presente trabalho tem como objetivo principal desenvolver e simular um sistema de decolagem e pouso de precisão autônoma para um VAANT do tipo quadrotor. A tese visa realizar o controle do sistema utilizando somente técnicas de visão computacional simuladas via V-REP usando um quadrotor com câmera monocular. O algorítimo inicialmente detecta o local de decolagem/pouso via marcador fiducial \textit{tag} ArUco, em seguida retorna a posição do quadrotor em relação ao marcador, contornando erros inerentes a sensores de posicionamento, como IMU e GPS. O diferencial da proposta baseia-se em obter um algorítimo que utilize a Rede Neural Convolucional (CNN) de forma a complementar a detecção da \textit{tag} ArUco clássica da maneira mais eficaz. Deseja-se criar dados de treinamento híbridos através de dados sintéticos e reais de forma a superar a limitações de casos específicos como detecção imprecisa a longa distância, oclusão parcial ou uso de câmeras com alta distorção.
 
-\vspace{\fill}
+    \vspace{\fill}
 
 %\begin{itemize}
     
@@ -95,11 +95,11 @@ Verifica-se a utilização de \textit{ArUco} pelo fato de ser uma biblioteca de 
 
 	%\textbf{Revisão Literária das Técnicas de Redes Neurais Usadas para Aperfeiçoar a Detecção de \textit{Tags} ArUco}
 	
-\subsection{Revisão Literária das Principais Técnicas de Decolagem e Pouso}
+	Neste tópico, será abordado uma revisão literária sobre as principais técnicas utilizadas para decolagem e pouso de precisão para VAANT do tipo quadrotor, bem como, a revisão literária do uso de marcadores fiduciais, abordando os principais trabalhos que utilizam técnicas para detecção de marcadores visuais como solução do problema de localização. Priorizou-se técnicas que utilizaram somente visão computacional a fim de criar um estado da arte mais próximo do proposta pela tese, a qual visa contornar erros inerentes a sensores de posicionamento como IMU e GPS ou sensores ativos como lasers e sonares. 
 	
-	Neste tópico, será abordado uma revisão literária sobre as principais técnicas utilizadas para decolagem e pouso de precisão para VAANT do tipo quadrotor, bem como, os principais trabalhos que utilizam técnicas para detecção de marcadores visuais como solução do problema de localização. Priorizou-se técnicas que utilizaram somente visão computacional a fim de criar um estado da arte mais próximo do proposta pela tese, a qual visa contornar erros inerentes a sensores de posicionamento como IMU e GPS ou sensores ativos como lasers e sonares. 
+	\subsection{Revisão Literária das Principais Técnicas de Decolagem e Pouso}
 	
-	O entendimento dessas técnicas é exposta de forma resumida através da Tabela~\ref{qd:estado-da-arte}, onde, destaca-se a principal abordagem e contribuição científica de cada referência. Em seguida, realiza-se uma análise comparativa destes trabalhos em relação ao trabalho proposto e os principais desafios superados por cada técnica, sendo o principal objetivo deste tópico. 
+	Inciailmente é realizada uma revisão literária das principais técnicas de decolagem e pouso, a qual é exposta de forma resumida através da Tabela~\ref{qd:estado-da-arte}, onde, destaca-se a principal abordagem e contribuição científica de cada referência. Em seguida, realiza-se uma análise comparativa destes trabalhos em relação ao trabalho proposto e os principais desafios superados por cada técnica, sendo o principal objetivo deste tópico. 
 	
     \begin{table}[H]
     \centering
@@ -134,7 +134,15 @@ Verifica-se a utilização de \textit{ArUco} pelo fato de ser uma biblioteca de 
     
     Destaca-se inicialmente o trabalho de \citet{Falanga2017}, que traz uma abordagem prática, contando com um algorítimo de visão computacional avançado, fusão de multi-sensores para localização do veículo aéreo além de detecção e estimativa de movimento da plataforma móvel usando uma segunda câmera. O algorítimo de detecção visual da plataforma móvel é aplicado em um filtro de \textit{Kalman} atrelado ao modelo cinemático da plataforma, resultando em uma identificação da plataforma móvel com alta frequência.
     
-    O principal diferencial entre o trabalho de \citet{Falanga2017} e a tese apresentada é em relação a estratégia de detecção do marcador visual, que não utiliza redes neurais convolucionais. A principal contribuição do trabalho de \citet{Falanga2017} são os resultados práticos do pouso autônomo, que diferente da proposta da presente tesa, visa um pouso em uma plataforma móvel, tendo como maior diferencial a utilização de um rápido algorítimo de odometria monocular de \cite{Forster2014}.
+    O principal diferencial entre o trabalho de \citet{Falanga2017} e a tese apresentada é em relação a estratégia de detecção do marcador visual, que não utiliza redes neurais convolucionais. A principal contribuição do trabalho de \citet{Falanga2017} são os resultados práticos do pouso autônomo, que diferente da proposta da presente tesa, visa um pouso em uma plataforma móvel, tendo como maior diferencial a utilização de um rápido algorítimo de odometria monocular de \cite{Forster2014}. Figura~\ref{fig:estadolanding}.
+    
+    %  Figura.
+    \begin{figure}[H]
+    	\centering
+    	\includegraphics[scale=1.1]{figuras/landing.jpg}
+    	\caption{Quadrotor pousando em uma plataforma móvel,~\cite{Falanga2017}.}
+    	\label{fig:estadolanding}
+    \end{figure}
     
     Outro trabalho de relevância é o de \citet{Gilberto2016}, que também tem como objetivo a realização prática de pouso em plataforma móvel, contudo, utilizando micro-veículos aéreos (MAVs). Verifica-se também uma abordagem diferente do proposto pela presente tese, a qual é voltada ao desenvolvimento de um algorítimo de controle através do Modelo de Controle Preditivo (MPC). Esta abordagem considera o problema da robustez de uma forma viável do ponto de vista da implementação do sistema, tendo como principal contribuição científica a geração de uma trajetória ótima, projetada para melhorar o desempenho do controlador e garantir robustez no sistema.
     
@@ -144,15 +152,41 @@ Verifica-se a utilização de \textit{ArUco} pelo fato de ser uma biblioteca de 
     
     No trabalho de \citet{Vetrella2017}, desenvolveu-se um algoritmos flexível de geração de trajetória, sua contribuição científica permitiu altos níveis de autonomia para as fases críticas da missão, como decolagem, cobertura de área e pouso. Diferente da tesa apresentada, o trabalho de \citet{Vetrella2017} apresenta uma abordagem de orientação que usa a teoria de orientação intrínseca da \textit{Tau} aprimorada para criar trajetórias espaço-temporais em 4D para um tempo-para-contato desejado com uma plataforma de aterrissagem rastreada por um sensor visual.
     
+%====================================================================
+
+    \subsection{Revisão Literária do Uso de Marcadores Fiduciais como \textit{Landmarks}}
+    
+    A seguir, realiza-se uma revisão literária sobre o uso de marcadores fiducuais como marcadores de localização (\textit{Landmarks}),  abordando os principais trabalhos que utilizam técnicas para detecção de marcadores visuais como solução do problema de localização.
+    
     A principal motivação de usar sensores de imagem é seu peso leve e baixo consumo de energia. Para este fim, a literatura sugere várias abordagens que utilizam marcadores visuais para simplificar a problema de localização, como exemplo, têm-se o trabalho de \citet{Pestana2016}, que faz uso de marcadores visuais \textit{ArUco} \citet{Salinas2013}, a abordagem proposta por \citet{Jayatilleke2013} que requer um conhecimento prévio de todas as poses de referência, enquanto que em \citet{Faigl2013}, o VAANT é necessário para manter os marcadores externos sempre visíveis. Nessas abordagens, o uso de marcadores visuais fornece uma localização precisa, com a desvantagem de alterar a área a ser explorada.
     
     Marcadores planares quadrados tornaram-se um método popular para estimar poses em aplicações como robôs autônomos \citet{Robert2009}, \citet{Pichler2017} e \citet{Valencia2005}, veículos não tripulados, \citet{Broggi2000}, \citet{Patterson2014} e \citet{Gonzalez2017}, além de treinadores virtuais \citet{Pflugi2017}, \citet{Chen2016} e \citet{Khattak2014}. Os marcadores permitem estimar a posição de uma câmera monocular com custo mínimo, alta robustez e velocidade. Basta criar marcadores com uma impressora normal, colocá-los no ambiente desejado para cobrir a área de trabalho e registrar sua localização a partir de um conjunto de imagens.
+    
+    Existem vários tipos de marcadores, cada um deles pertencente a um dicionário. Cada biblioteca propôs seu próprio conjunto de marcadores. Então, temos \textit{ArToolKit+}, \textit{Chilitags}, \textit{AprilTags} e, claro, o dicionário \textit{ArUco}. O \textit{design} de um dicionário é importante, já que a ideia é que seus marcadores sejam o mais diferentes possíveis para evitar confusões. 
+
+    Um sistema de referência fiducial é composto por um conjunto de marcadores válidos e um algoritmo que realiza sua detecção e possivelmente correção em imagens. Vários sistemas de marcadores fiduciais têm sido propostos na literatura como mostrado na Figura ~\ref{fig:aruco-tipos}.
+
+    %  Figura.
+    \begin{figure}[H]
+    	\centering
+    	\includegraphics[width=10cm, height=8 cm]{figuras/aruco-tipos.jpg}
+    	\caption{Exemplos de outros tipos de marcadores fiduciais,~\cite{Garrido2016}.}
+    	\label{fig:aruco-tipos}
+    \end{figure}
+
+    As propostas mais simples consistem em usar pontos como marcadores fiduciais, como LEDs, esferas retrorreflexivas ou planas \cite{Klaus1998, Ribo2001}, que podem ser segmentadas usando técnicas básicas sob condições controladas. Sua identificação é geralmente obtida a partir da posição relativa dos marcadores e geralmente envolve um processo complexo. Outras abordagens usam marcadores circulares planares onde a identificação é codificada em setores circulares ou anéis concêntricos \cite{Measurements1998, Naimark2002}. No entanto, os marcadores circulares geralmente fornecem apenas um ponto de correspondência (o centro), tornando necessária a detecção de vários deles para estimar a pose.
+
+    Outros tipos de marcadores fiduciais são baseados na detecção de \textit{blob}. \textit{Cybercode} \cite{Rekimoto2000} ou \textit{VisualCode} \cite{Michael2004} é derivado da tecnologia de códigos de barras 2D como \textit{MaxiCode} ou \textit{QR}, mas também pode fornecer com precisão vários pontos de correspondência. Outros marcadores fiduciais populares são os marcadores de amebas \textit{ReacTIVision} \cite{Kaltenbrunner2007}, que também são baseados na detecção de \textit{blob} e seu \textit{design} foi otimizado usando algoritmos genéticos. Alguns autores propuseram o uso de classificadores treinados para melhorar a detecção em casos de má iluminação e desfoque causado pelo movimento rápido da câmera \cite{Claus2005}.
+
+    Uma alternativa para as abordagens anteriores são os sistemas de marcadores fiduciais baseados em quadrados. Sua principal vantagem é que a presença de quatro pontos proeminentes pode ser empregada para obter a pose, enquanto a região interna é usada para identificação (usando um código binário ou um padrão arbitrário, como uma imagem). Na categoria de padrões arbitrários, um dos sistemas mais populares é o \textit{ARToolKit} \cite{Kato1999}, um projeto de código aberto que tem sido amplamente utilizado na última década, especialmente na comunidade acadêmica. Marcadores \textit{ARToolKit} são compostos por uma borda preta larga com uma imagem interna que é armazenada em um banco de dados de padrões válidos. Apesar de sua popularidade, tem algumas desvantagens. Primeiro, ele usa uma abordagem de correspondência de modelos para identificar marcadores, obtendo altas taxas de confusão de falsos positivos e inter-marcadores \cite{Fiala2005} . Em segundo lugar, o sistema usa um limiar global fixo para detectar quadrados, tornando-o muito sensível a diferentes condições de iluminação.
     
     Outras abordagens baseadas em sensores de imagem para realizar a navegação e localização, evitar colisões são os trabalhos de \citet{Zingg2010} e \citet{Lippiello2011}, onde \textit{Pyramidal Lukas-Kanade} é usado para a estimativa do fluxo óptico. As técnicas utilizam informações computadas por algoritmos de fluxo óptico para obter um mapa de profundidade.
     
     Outras abordagens interessantes e mais inovadoras usam o Redes Neurais para classificação e navegação de cenas internas \citet{Kim2015}, utilizando uma \textit{Convolutional Neural Network} (CNN) para aprender uma estratégia de controle baseada em dados capturados de vôos realizados por um piloto especialista humano.
     
-    \subsection{Revisão Literária do Uso de Marcadores Fiduciais como \textit{Landmarks}}
+    APRESENTAR AQUI UM RESUMO DAS ATIVIDADES DO GRUPO  DE AUTOMACAO E ROBOTICA DO LABORAT'ORIO DE PROCESSAMENTO DE SINAIS E AN'ALISE DE SISTEMAS DINAMICOS DO DS1 DA FEM, E COMO ESSE TRABALHO SE INSERE NOS OBJETIVOS DESSE GRUPO
+    
+    APRESENTAR AQUI TAMBEM UMA INDICACAO DAS PUBLICA'COES E OUTRAS ATIVIDADES DE VALOR REALIZADAS DURNTE O PER'IODO DO DOUTORADO
     
     %abordagem que utiliza marcadores fiduciais clássicos ...abordagem que utiliza PX4Flow via técnica Optical Flow e IR-LOCK via câmera PIXY. 
     
@@ -162,6 +196,11 @@ Verifica-se a utilização de \textit{ArUco} pelo fato de ser uma biblioteca de 
 \section{Contribuição Científica}
     
     Na presente tese, apresenta-se um sistema validado por simulação via V-REP para VAANT do tipo quadrotor capaz de decolar e pousar de forma autônoma em um alvo estático. O algorítimo é baseado somente em técnicas de visão computacional para detectar a plataforma de pouso através de marcador fiducial e assim retornar a posição do quadrotor em relação ao marcador que foi desenvolvido para ter identificação única. Logo, não há necessidade de nenhum conhecimento prévio sobre a localização da plataforma de pouso. O sistema apresenta baixo custo por eliminar a necessidade de instalação de infraestrutura externa, como um sistema de captura de movimento, além de contornar erros inerentes a sensores de posicionamento, como IMU e GPS. O algorítimo utiliza Rede Neural Convolucional (CNN) de forma a complementar a detecção da \textit{tag} \textit{ArUco} clássica da maneira mais eficaz e supera as limitações da detecção imprecisa a longa distância, oclusão parcial ou uso de câmeras com alta distorção.
+    
+    FALTOU FALAR DE FORMA MAIS CLARA SOBRE:
+    1 - Formulação d problema de pesquisa a ser resolvido
+    2 - Itemização dos pricnipais objrtivos desse trbalho
+    3 - Explicitar de forma bem clara qual a sua contribuição e resultados relevantes de sua pesquisa
 
 	%\subsection{Dicionário de Marcadores para Pouso/Decolagem de Identificação Única}
 
